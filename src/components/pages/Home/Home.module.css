@@ -1,0 +1,28 @@
+.body {
+    background: #FFF;
+}
+
+.header {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.titulo {
+    color: var(--colors-default, #000);
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 2rem;
+    max-width: 20ch;
+}
+
+.subtitulo {
+    color: var(--colors-default, #000);
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.25rem; /* 125% */
+letter-spacing: 0.0125rem;
+}

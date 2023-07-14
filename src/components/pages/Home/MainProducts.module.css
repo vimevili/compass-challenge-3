@@ -1,0 +1,27 @@
+.productsContainer {
+    display: flex;
+    justify-items: center;
+    padding: 2rem 0rem 1.5rem 0rem;
+    flex-direction: column;
+    gap: 1.25rem;
+    border-radius: 1.875rem 1.875rem 0rem 0rem;
+    background: #F6F6F6;
+    height: 100vh;
+}
+
+.featureContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem 0 1.5rem;
+    color: var(--colors-default, #000);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem; /* 125% */
+    letter-spacing: 0.0125rem;
+}
+
+.seeButton {
+    color: var(--colors-grey-dark-1, #7F7F7F);
+}
+

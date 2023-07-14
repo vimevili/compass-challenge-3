@@ -7,12 +7,18 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "nodemon"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.17",
+    "apollo-server": "^3.12.0",
     "firebase": "^10.0.0",
+    "framer-motion": "^10.12.20",
+    "graphql": "^16.7.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-spring-bottom-sheet": "^3.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
@@ -23,6 +29,7 @@
     "eslint": "^8.44.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
+    "nodemon": "^3.0.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.0"
   }

@@ -1,0 +1,14 @@
+.filterContainer {
+    display: flex;
+    gap: 0.7rem;
+    margin: 0 auto;
+}
+
+.filter {
+    padding: 0.4rem 0.8rem;
+    border-radius: 1.875rem;
+    background: #0ACF83;
+    border: none;
+    color: #FFF;
+    font-size: 0.875rem;   
+}
