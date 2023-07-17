@@ -7,7 +7,6 @@ function useFetch() {
 
   useEffect(() => {
     const url = 'https://run.mocky.io/v3/19bc458a-deaa-4a6d-8722-95cb6e904f4d';
-  
     const fetchData = () => {
       setLoading(true);
       fetch(url)

@@ -3,6 +3,7 @@ import styles from './MainProducts.module.css'
 import Filters from './Filters'
 import ShopCarousel from './Carousels/ShopCarousel'
 import FeaturedCarousel from './Carousels/FeaturedCarousel'
+import {Link} from 'react-router-dom'
 
 const MainProducts = () => {
   const [filter, setFilter] = useState('Headphone')
@@ -18,7 +19,9 @@ const MainProducts = () => {
       <ShopCarousel filter={filter} />
       <div className={styles.featureContainer}>
         <p>Featured Products</p>
-        <a className={styles.seeButton}>Sell All</a>
+        <Link to='/products' className={styles.seeButton}>
+          See All
+        </Link>
       </div>
       <FeaturedCarousel />  
     </div>

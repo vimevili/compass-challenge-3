@@ -1,0 +1,24 @@
+.filterContainer {
+    display: flex;
+    gap: .5rem;
+}
+.categoryLabel {
+    display: inline-block;
+    font-family: DM Sans;
+    padding: 0.4rem 0.8rem;
+    border-radius: 1.875rem;
+    border: none;
+    color: #7F7F7F;
+    font-size: 0.875rem;  
+}
+
+.radioInput {
+    display: none;
+}
+
+.radioInput:checked + .categoryLabel {
+    background: #0ACF83;
+    padding: 0.4rem 0.8rem;
+    color: #fff;
+    font-size: 0.875rem;  
+}

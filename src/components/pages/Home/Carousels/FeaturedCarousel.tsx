@@ -7,13 +7,15 @@ const FeaturedCarousel = () => {
         {title:'TMA-2 HD Wireless', price: 350, src: '/images/headphones.png'},
         {title:'CO2 - Cable', price: 25, src: '/images/cable.png'},
         {title:'CO2 - Cable', price: 25, src: '/images/cable.png'},
+    ] 
 
-    ]
   return (
     <motion.div className={styles.carousel} whileTap={{cursor: 'grabbing'}}>
             <motion.div className={styles.inner} 
               drag='x' 
-              dragConstraints={{right: 0, left: -160}}>
+              dragConstraints={{ right: 0, left: -195}}initial={{x: 100}}
+              animate={{x: 0}}
+              transition={{duration: 0.8}}>
                 {
                 featuredProducts.map((product, index) => {
                     return <FeaturedCard 

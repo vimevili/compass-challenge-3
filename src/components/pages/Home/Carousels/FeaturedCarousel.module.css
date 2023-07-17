@@ -1,8 +1,8 @@
 .carousel {
     max-width: 22.5rem;
-    margin-left: 1.5rem;
     cursor: grab;
     overflow: hidden;
+    padding: 0 1.5rem;
 }
 
 .inner {

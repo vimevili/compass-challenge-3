@@ -1,13 +1,58 @@
-import { useContext } from 'react';
-import { UserContext } from './UserContext';
+import { useState } from 'react';
 import styles from './AuthSection.module.css'
+import {Link} from 'react-router-dom'
 
 const AuthSection = ({type}) => {
     
-    const { signUp, signInWithGoogle, signInWithFacebook, logOut, user, setEmail, setPassword } =  useContext(UserContext);
+//   const { signUp, signInWithGoogle, signInWithFacebook, logOut, user, setEmail, setPassword } =  useContext(UserContext);
+  const [user, setUser] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
+  // Default authentication
+  const signUp = (email, password) => {
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+          setUser(result.user);
+      })
+      .catch((err) => {
+          console.log(err);
+      });
+  };
+  // Google authentication
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        setUser(result.user);
+        console.log(result.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  // Facebook authentication
+  const signInWithFacebook = () => {
+    signInWithPopup(auth, facebookProvider)
+      .then((result) => {
+        setUser(result.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+    
   return (
-    <>
+    <div className={styles.body}>
         <h1 className={styles.titulo}>Audio</h1>
         <p className={styles.subtitulo}>It's modular and designed to last</p>
 
@@ -26,7 +71,9 @@ const AuthSection = ({type}) => {
 
             {type === 'Up' && 
             <>
-                <button onClick={signUp} className={styles.signButton}>Sign Up</button>
+            <Link to='/home'>
+              <button onClick={signUp} className={styles.signButton}>Sign Up</button>
+            </Link>
                 <ul className={styles.socialContainer}>
                     <li><a onClick={signInWithFacebook}><img src="public/images/facebook.svg" alt="" /></a></li>
                     <li><a onClick={signInWithGoogle}><img src="public/images/google.svg" className={styles.google} alt="" /></a></li>
@@ -45,7 +92,7 @@ const AuthSection = ({type}) => {
         </>
         }
         </form>
-    </>
+    </div>
   )
 }
 

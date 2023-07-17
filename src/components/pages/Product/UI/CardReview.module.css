@@ -1,0 +1,30 @@
+.reviewContainer {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .6rem;
+    padding: 1.5rem;
+    padding-bottom: 0;
+}
+
+.userReview {
+    grid-column: 2;
+    line-height: 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+.userName {
+    color: #000;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1rem; /* 125% */
+    letter-spacing: 0.0125rem;
+}
+
+.stars {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    grid-column: 2;
+}

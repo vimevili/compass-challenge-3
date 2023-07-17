@@ -1,0 +1,28 @@
+.filterContainer {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: .6rem;
+}
+.categoryLabel {
+    display: inline-block;
+    font-family: DM Sans;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.625rem;
+    border: none;
+    color: #7F7F7F;
+    font-size: 0.875rem;  
+    border: 1px solid var(--colors-grey-dark-1, #7F7F7F);
+
+}
+
+.radioInput {
+    display: none;
+}
+
+.radioInput:checked + .categoryLabel {
+    background: #0ACF83;
+    color: #fff;
+    border: none;
+}

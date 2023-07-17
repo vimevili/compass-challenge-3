@@ -6,7 +6,6 @@
     gap: 1.25rem;
     border-radius: 1.875rem 1.875rem 0rem 0rem;
     background: #F6F6F6;
-    height: 100vh;
 }
 
 .featureContainer {
@@ -23,5 +22,7 @@
 
 .seeButton {
     color: var(--colors-grey-dark-1, #7F7F7F);
+    text-decoration: none;
 }
+
 

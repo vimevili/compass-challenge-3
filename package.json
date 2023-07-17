@@ -11,14 +11,21 @@
     "start": "nodemon"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.17",
-    "apollo-server": "^3.12.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.0",
+    "@mui/material": "^5.14.0",
+    "babel-plugin-macros": "^3.1.0",
     "firebase": "^10.0.0",
     "framer-motion": "^10.12.20",
     "graphql": "^16.7.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-spring-bottom-sheet": "^3.4.1"
+    "react-router-dom": "^6.14.1",
+    "react-spring-bottom-sheet": "^3.4.1",
+    "react-useanimations": "^2.10.0",
+    "sweetalert2": "^11.7.18",
+    "sweetalert2-react-content": "^5.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",

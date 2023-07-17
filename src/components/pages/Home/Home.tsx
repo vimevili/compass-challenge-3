@@ -1,7 +1,7 @@
 // import { UserContext } from '../../auth/UserContext';
-import SearchBar from '../Search/SearchBar'
 import styles from './Home.module.css'
 import MainProducts from './MainProducts';
+import {Link} from 'react-router-dom'
 
 const Home = () => {    
   // const { user } = useContext(UserContext);
@@ -13,7 +13,17 @@ const Home = () => {
        <p className={styles.subtitulo}>Hi, Andrea</p>
        <h1 className={styles.titulo}>What are you looking for today?</h1>
      </div>
-     <SearchBar />
+
+     {/* SEARCH BAR */}
+     <Link to='/search' className={styles.link}>
+        <div className={styles.inputs}>
+          <img src="public/images/icon-search.svg" id='img-lock' alt="" />
+          <input
+            type="search"
+            placeholder="Search headphone"
+          />
+        </div>
+      </Link>
      <MainProducts />
     </div>
   )

@@ -5,9 +5,9 @@ const Card = ({title, filter}) => {
   return (
     <div className={styles.container}>
           <div className={styles.textContainer}>
-            <h2>{title}</h2>
+            <h2 className={styles.title}>{title}</h2>
             <div className={styles.buttonContainer}>
-              <a href='' className={styles.shopButton}>Shop now</a>
+              <button className={styles.shopButton}>Shop now</button>
               <img src="/images/icon-arrow-right.svg" alt="" />
             </div>
           </div>

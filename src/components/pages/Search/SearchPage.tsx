@@ -1,56 +1,73 @@
 import {useState} from 'react';
 import styles from './SearchPage.module.css'
-import SearchBar from './SearchBar'
 import ProductCard from './UI/ProductCard'
+import useFetch from '../../hooks/useFetch'
+import {Link} from 'react-router-dom'
 
 const SearchPage = () => {
-
-const [filteredProducts, setFilteredProducts] = useState();
 const [search, setSearch] = useState('');
+const { data, loading, error} = useFetch();
 
-function handleSearch(products) {
-  setFilteredProducts(products);
-}
+const filteredProducts:[Product] = data && search.length > 0 ? data.filter((product) =>
+product.name.toLowerCase().includes(search.toLowerCase())) : [];
 
 const popularProducts = [
-  {name: 'TMA-2 Comfort Wireless', review: 3, rating: 4.6, price: 270},
-  {name: 'TMA-2 DJ', review: 4, rating: 4.6, price: 270},
-  {name: 'TMA-2 Move Wireless', review: 6, rating: 4.6, price: 270},
+  {name:"Bluetooth Sports Headphones", id:3, price: 79.99, rating: 4, reviews: 2},
+  {name:"Premium Over-Ear Headphones", id:5, price: 199.99, rating: 4, reviews: 2},
+  {name:"Wireless On-Ear Headphones", id:7, price: 129.99, rating: 4, reviews: 2}
 ]
-console.log(filteredProducts) 
+
   return (
     <div className={styles.pageContainer}>
       <div className={styles.header}>
         <img src="/public/images/icon-chevron-left.svg" alt="" />
         <h2 className={styles.search}>Search</h2>
-        <img src="/public/images/icon-shopping-cart.svg" alt="" />
+        <Link to='/cart'>
+          <img src="/public/images/icon-shopping-cart.svg" alt="" />
+        </Link>
       </div>
-      <SearchBar 
-      handleSearch={handleSearch}/>
-      {search === '' &&
-      <>
+
+    {/* SEARCH BAR */}
+      <div className={styles.inputs}>
+        <img src="public/images/icon-search.svg" id='img-lock' alt="" />
+        <input
+          type="search"
+          placeholder="Search headphone"
+          value={search}
+          onChange={({target}) => setSearch(target.value)}
+        />
+      </div>
+
+      {search.length === 0 ? 
+        <>
         <h2 className={styles.popular}>Popular product</h2>
         <ul className={styles.productContainer}>
-          {popularProducts.map((product, index) =>  
-          <ProductCard 
-          key={index}
-          name={product.name}
-          reviews={product.review}
-          rating={product.rating}
-          price={product.price}/>)}
+          {popularProducts.map((product, index) => 
+          <li key={index}>
+            <Link to={`/products/${product.id}/overview/`} className={styles.link}>
+              <ProductCard 
+              key={index}
+              name={product.name}
+              reviews={product.reviews}
+              rating={product.rating}
+              price={product.price}/>
+            </Link> 
+          </li>)}
         </ul>
-      </>      
-      }
-      {      
-      filteredProducts &&
+        </>
+        :       
+      filteredProducts.length > 0 &&
       <ul className={styles.productContainer}>
           {filteredProducts.map((product, index) =>  
-          <ProductCard 
-          key={index}
-          name={product.name}
-          reviews={product.reviews.length}
-          rating={product.rating}
-          price={product.price}/>)}
+          <li key={index}>
+            <Link to={'/products/${product.id}/overview'}>
+              <ProductCard 
+              name={product.name}
+              reviews={product.reviews.length}
+              rating={product.rating}
+              price={product.price}/>
+            </Link>
+          </li>)}
       </ul>
       }
     </div>
