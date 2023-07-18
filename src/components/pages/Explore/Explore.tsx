@@ -10,7 +10,6 @@ const Explore = () => {
   const {data} = useFetch();
   const [filteredProducts, setFilteredProducts] = useState()
   const [loading, setLoading] = useState(false)
-  console.log(loading);
   
   function getComparator(selectedSortBy) {
     switch (selectedSortBy) {

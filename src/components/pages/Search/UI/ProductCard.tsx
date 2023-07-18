@@ -5,7 +5,7 @@ const ProductCard = ({name, reviews, price, rating}) => {
     <div className={styles.container}>
 
       <div className={styles.imgContainer}>
-        <img src="/public/images/headphones.png" alt="" />
+        <img src="/public/images/headphone.png" alt="" />
       </div>
 
       <div className={styles.textContainer}>

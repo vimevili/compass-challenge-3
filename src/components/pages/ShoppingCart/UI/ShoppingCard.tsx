@@ -12,7 +12,7 @@ const ShoppingCard = ({product, name, price}) => {
     <div className={styles.cardContainer}>
 
       <div className={styles.imgContainer}>
-        <img src="/public/images/headphones.png" alt="" />
+        <img src="/public/images/headphone.png" alt="" />
       </div>
 
         <div className={styles.container}>

@@ -11,7 +11,7 @@ const Card = ({title, filter}) => {
               <img src="/images/icon-arrow-right.svg" alt="" />
             </div>
           </div>
-          <img src={filter === 'Headphone' ? "/images/headphones.png" : '/images/headset.png'} alt="" />
+          <img src={filter === 'Headphone' ? "/images/headphone.png" : '/images/headset.png'} alt="" />
     </div>
   )
 }

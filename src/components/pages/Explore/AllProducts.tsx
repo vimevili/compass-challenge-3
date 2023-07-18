@@ -1,20 +1,16 @@
 import AllProductsCard from './UI/AllProductsCard';
 import useFetch from '../../hooks/useFetch'
 import styles from './AllProducts.module.css'
-import loadingIcon from "react-useanimations/lib/loading";
 import UseAnimations from "react-useanimations";
 import {Link} from 'react-router-dom'
+import Loading from '../Loading/Loading';
 
 const AllProducts = ({loading, products}) => {
   const {error} = useFetch();
   
   return (
     <div className={styles.body}>
-        {loading && <div className={styles.loadingContainer}>
-          <UseAnimations
-        animation={loadingIcon}
-        size={50}/>
-          </div>}
+        {loading && <Loading />}
         {error && <p>{error}</p>}
         {products && !loading && products.map((product) => 
               <li key={product.id}>

@@ -1,4 +1,4 @@
-import AuthSection from '../../auth/AuthSection'
+import AuthSection from '../../services/AuthSection'
 
 const SignUp = () => {
   return (

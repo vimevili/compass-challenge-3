@@ -1,55 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styles from './AuthSection.module.css'
 import {Link} from 'react-router-dom'
-
+import { UserContext } from '../../contexts/UserContext';
 const AuthSection = ({type}) => {
     
-//   const { signUp, signInWithGoogle, signInWithFacebook, logOut, user, setEmail, setPassword } =  useContext(UserContext);
-  const [user, setUser] = useState();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  // Default authentication
-  const signUp = (email, password) => {
-      createUserWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-          setUser(result.user);
-      })
-      .catch((err) => {
-          console.log(err);
-      });
-  };
-  // Google authentication
-  const signInWithGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        setUser(result.user);
-        console.log(result.user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // Facebook authentication
-  const signInWithFacebook = () => {
-    signInWithPopup(auth, facebookProvider)
-      .then((result) => {
-        setUser(result.user);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const logOut = async () => {
-    try {
-      await signOut(auth);
-      setUser(null);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const { signUp, signInWithGoogle, signInWithFacebook, logOut, user, setEmail, setPassword } =  useContext(UserContext);
     
   return (
     <div className={styles.body}>
@@ -85,9 +40,9 @@ const AuthSection = ({type}) => {
         {type === 'In' &&  <>
         <div className={styles.signinContainer}>
             <a href="" className={styles.forgot}>Forgot Password</a>
-            {/* <button onClick={console.log('oi')}>Sign In</button> */}
+            <button onClick={console.log('oi')}>Sign In</button>
             <button className={styles.signButton}>Sign In</button>
-            <p className={styles.signPara}>Didn't have any account? <a href="" className={styles.singup}>Sing Up here</a></p>
+            <p className={styles.signPara}>Didn't have any account? <Link to='/sign-up' className={styles.singup}>Sing Up here</Link></p>
         </div>
         </>
         }

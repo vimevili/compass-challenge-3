@@ -8,6 +8,7 @@ import useFetch from '../../hooks/useFetch'
 import cartIcon from '../../../../public/images/icon-shopping-cart.svg'
 import returnIcon from '../../../../public/images/icon-chevron-left.svg'
 import { CartContext } from '../../../contexts/CartContext';
+import Loading from '../Loading/Loading';
 
 const Overview = () => {
   
@@ -22,7 +23,7 @@ const Overview = () => {
   
   const { id } = useParams();
   const navigate = useNavigate();
-  const {data} = useFetch()
+  const {data, loading} = useFetch()
 
   
   const productsData = useContext(CartContext)
@@ -35,6 +36,9 @@ const Overview = () => {
   
   return ( 
     <div className={styles.body}>
+      {loading && <Loading />}
+      {!loading && 
+      <>
       <div className={styles.headerIcons}>
         <button onClick={() => navigate(-1)} style={{background: 'none', border: 'none'}}><img src={returnIcon} alt="" /></button>
         <Link to='/cart'>
@@ -74,6 +78,7 @@ const Overview = () => {
           <button onClick={() => handleAddProduct(selectedProduct)} className={styles.button}>Add To Cart</button>
         </Link>
       </div>
+      </>}
     </div>
     
   )
