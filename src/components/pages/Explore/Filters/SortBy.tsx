@@ -1,14 +1,17 @@
 import {useState} from 'react'
 import styles from './SortBy.module.css'
 
-const SortBy = ({setSelectedSortBy}) => {
+const SortBy = ({clearFilters, selectedSortBy, setSelectedSortBy}) => {
 
   const filters = ['Popularity', 'Newest', 'Oldest', 'High Price', 'Low Price', 'Review']
-  const [selectedRadio, setSelectedRadio] = useState();
   
   const handleRadioChange = ({target}) => {
-    setSelectedRadio(target.value);
     setSelectedSortBy(target.value)
+  };
+
+  const handleClearFilters = () => {
+    setSelectedSortBy(null)
+    clearFilters()
   };
 
   return (
@@ -17,10 +20,10 @@ const SortBy = ({setSelectedSortBy}) => {
         
         <li key={index}>
           <input type="radio" 
-          checked={selectedRadio === filter} 
+          checked={selectedSortBy === filter} 
           value={filter}
           id={filter} 
-          name="filter" 
+          name="sort-filter" 
           className={styles.radioInput} 
           onChange={handleRadioChange}
           />

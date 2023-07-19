@@ -1,9 +1,12 @@
 .body {
     background: #FFF;
+    height: 100vh;
+    box-sizing: border-box;
 }
 
 .header {
     padding: 1.5rem;
+    padding-top: 5rem;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

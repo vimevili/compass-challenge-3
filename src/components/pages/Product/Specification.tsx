@@ -2,8 +2,8 @@ import styles from './Specification.module.css'
 import {useState, useContext} from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch'
-import returnIcon from '../../../../public/images/icon-chevron-left.svg'
-import cartIcon from '../../../../public/images/icon-shopping-cart.svg'
+import returnIcon from '/src/assets/return.svg'
+import cartIcon from '/src/assets/shopping-cart.svg'
 import { CartContext } from '../../../contexts/CartContext';
 import Loading from '../Loading/Loading';
 
@@ -49,12 +49,12 @@ const Specification = () => {
               <li className={styles.linkContainer}>
                 <input type='radio' onClick={()=> navigate(`/products/${id}/overview`)} className={styles.links} name='link' id='overview' checked={overChecked} onChange={handleRadioChange}/>
                 <label htmlFor="overview">Overview</label>
-                <img src="/public/images/icon-visited-link.svg" alt="" className={overviewBarOn}/>
+                <img src="/src/assets/visited-link.svg" alt="" className={overviewBarOn}/>
               </li>
               <li className={styles.linkContainer}>
                 <input type='radio' className={styles.links} name='link' id='features' checked={featureChecked} onChange={handleRadioChange}/>
                 <label htmlFor="features">Features</label>
-                <img src="/public/images/icon-visited-link.svg" alt="" className={featureBarOn}/>
+                <img src="/src/assets/visited-link.svg" alt="" className={featureBarOn}/>
               </li>
             </ul>
           </div>

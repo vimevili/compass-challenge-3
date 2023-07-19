@@ -2,13 +2,14 @@ import styles from './ShoppingCart.module.css'
 import UseAnimations from "react-useanimations";
 import trashIcon from "react-useanimations/lib/trash2";
 import ShoppingCard from './UI/ShoppingCard';
-import returnIcon from '../../../../public/images/icon-chevron-left.svg'
+import returnIcon from '/src/assets/return.svg'
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { CartContext } from '../../../contexts/CartContext';
 
 const ShoppingCart = () => {
   const navigate = useNavigate();
+
   const productsData = useContext(CartContext)
   
   const {cartProducts,
@@ -45,7 +46,7 @@ const ShoppingCart = () => {
           <h2 className={styles.totalPrice}>USD {totalPrice && totalPrice.toFixed(2)}</h2>
         </div>
         <div className={styles.buttonContainer}>
-            <button className={styles.button}>Proceed to Checkout <img src="public/images/button-icon-chevron-right.svg" alt="" /></button>
+            <button className={styles.button}>Proceed to Checkout <img src="/src/assets/icon.svg" alt="" /></button>
             
         </div>
       </div>

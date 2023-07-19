@@ -32,12 +32,38 @@
     background: #0ACF83;
 }
 
+.sheetTitle {
+    color: #000;
+    font-family: DM Sans;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 2.25rem; 
+}
 .basicText {
     font-family: DM Sans;
     color: #000;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.25rem;
+}
+.buttonsContainer {
+    display: flex;
+    gap: 1rem;
+}
+
+.clearButton {
+    display: inline-block;
+    font-family: DM Sans;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.625rem;
+    background: none;
+    color: #000;
+    font-size: 0.875rem;
+    border: 1px solid var(--colors-grey-dark-1, #7F7F7F);
+}
+.exitButton {
+    background: none;
+    border: none;
 }
 
 .buttonContainer {

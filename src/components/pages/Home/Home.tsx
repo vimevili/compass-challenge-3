@@ -1,14 +1,11 @@
-import { UserContext } from '../../../contexts/UserContext';
-import {useContext} from 'react'
 import styles from './Home.module.css'
 import MainProducts from './MainProducts';
 import {Link} from 'react-router-dom'
 import { motion} from 'framer-motion'
+import { UserContext } from '../../../contexts/UserContext';
+import {useContext} from 'react'
 const Home = () => {    
-  
-  const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
-  
+  const {currentUser} = useContext(UserContext)
   return (
     <motion.div 
     initial={{ opacity: 0, x: '100%' }}
@@ -25,7 +22,7 @@ const Home = () => {
         {/* SEARCH BAR */}
         <Link to='/search' className={styles.link}>
             <div className={styles.inputs}>
-              <img src="public/images/icon-search.svg" id='img-lock' alt="" />
+              <img src="/src/assets/search.svg" id='img-lock' alt="" />
               <input
                 type="search"
                 placeholder="Search headphone"

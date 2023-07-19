@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from 'react'
 const FeaturedCarousel = () => {
 
     const featuredProducts = [
-        {title:'TMA-2 HD Wireless', price: 350, src: '/images/headphone.png'},
-        {title:'CO2 - Cable', price: 25, src: '/images/cable.png'},
-        {title:'CO2 - Cable', price: 25, src: '/images/cable.png'},
+        {title:'TMA-2 HD Wireless', price: 350, src: 'src/assets/headphone.png'},
+        {title:'CO2 - Cable', price: 25, src: 'src/assets/cable.png'},
+        {title:'CO2 - Cable', price: 25, src: 'src/assets/cable.png'},
     ] 
     const [width, setWidth] = useState(0)
     const carousel = useRef()

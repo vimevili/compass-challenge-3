@@ -7,7 +7,7 @@ import SortBy from './SortBy'
 import 'react-spring-bottom-sheet/dist/style.css'
 import filterIcon from "react-useanimations/lib/settings2";
 
-export default function FilterButton({setLoading, applyFiltersAndSort, setSelectedCategory, setSelectedSortBy}) {
+export default function FilterButton({ setLoading, applyFiltersAndSort, selectedCategory, setSelectedCategory, selectedSortBy, setSelectedSortBy}) {
   
   const [open, setOpen] = useState(false)
   const sheetRef = useRef<BottomSheetRef>()
@@ -23,6 +23,14 @@ export default function FilterButton({setLoading, applyFiltersAndSort, setSelect
     }, 700);
   }
 
+  function clearFilters() {
+    setSelectedCategory(null)
+    setSelectedSortBy(null)
+  }
+  function onDismiss () {
+    setOpen(false)
+  }
+
   return (
     <>
       <button onClick={() => setOpen(true)} className={styles.button}>
@@ -34,7 +42,7 @@ export default function FilterButton({setLoading, applyFiltersAndSort, setSelect
 
         <BottomSheet ref={sheetRef}
         open={open}
-        onDismiss={() => setOpen(false)}
+        onDismiss={onDismiss}
         defaultSnap={({ maxHeight }) => maxHeight / 2}
         snapPoints={({ maxHeight }) => [
           maxHeight - maxHeight / 10,
@@ -44,19 +52,26 @@ export default function FilterButton({setLoading, applyFiltersAndSort, setSelect
 
             <div className={styles.container}>
                 <div className={styles.headerContainer}>
-                <h1>Filter</h1>   
-                  <a href="" onClick={() => onDismiss}><img src="/public/images/icon-x.svg" alt="" /></a>    
+                <h1 className={styles.sheetTitle}>Filter</h1>   
+                  <div className={styles.buttonsContainer}>
+                    <button onClick={clearFilters} className={styles.clearButton}>Clear filters</button>
+                    <button onClick={onDismiss} className={styles.exitButton}><img src="/src/assets/exit.svg" alt="" /></button>
+                  </div>
                 </div>
                 <div>
                   <p className={styles.basicText}>Category</p>
                   <CategoryFilters 
+                  selectedCategory = {selectedCategory}
                   setSelectedCategory = {setSelectedCategory}
+                  clearFilters={clearFilters}
                   />
                 </div>
                 <div>
                   <p className={styles.basicText}>Sort By</p>
                   <SortBy 
+                  selectedSortBy={selectedSortBy}
                   setSelectedSortBy={setSelectedSortBy}
+                  clearFilters={clearFilters}
                   />
                 </div>
                 <button onClick={apply} className={styles.applyButton}>Apply Filter</button>

@@ -8,10 +8,10 @@ const Card = ({title, filter}) => {
             <h2 className={styles.title}>{title}</h2>
             <div className={styles.buttonContainer}>
               <button className={styles.shopButton}>Shop now</button>
-              <img src="/images/icon-arrow-right.svg" alt="" />
+              <img src="src/assets/icon.svg" alt="" />
             </div>
           </div>
-          <img src={filter === 'Headphone' ? "/images/headphone.png" : '/images/headset.png'} alt="" />
+          <img src={filter === 'Headphone' ? "src/assets/headphone.png" : 'src/assets/headset.png'} alt="" />
     </div>
   )
 }

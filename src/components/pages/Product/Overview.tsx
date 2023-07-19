@@ -5,8 +5,8 @@ import AnotherProductCarousel from './Carousels/AnotherProductCarousel'
 import {useState, useContext } from 'react'
 import { useNavigate, useParams, Link  } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch'
-import cartIcon from '../../../../public/images/icon-shopping-cart.svg'
-import returnIcon from '../../../../public/images/icon-chevron-left.svg'
+import cartIcon from '../../../assets/shopping-cart.svg'
+import returnIcon from '../../../assets/return.svg'
 import { CartContext } from '../../../contexts/CartContext';
 import Loading from '../Loading/Loading';
 
@@ -33,7 +33,7 @@ const Overview = () => {
   const name = selectedProduct && selectedProduct.name
   const price = selectedProduct &&  selectedProduct.price.substring(1, selectedProduct.price.length)
   const reviews = selectedProduct &&  selectedProduct.reviews  
-  
+
   return ( 
     <div className={styles.body}>
       {loading && <Loading />}
@@ -52,12 +52,12 @@ const Overview = () => {
               <li className={styles.linkContainer}>
                   <input type='radio' className={styles.links} name='link' id='overview' checked={overChecked} onChange={handleRadioChange}/>
                   <label htmlFor="overview">Overview</label>
-                  <img src="/public/images/icon-visited-link.svg" alt="" className={overviewBarOn}/>
+                  <img src="/src/assets/visited-link.svg" alt="" className={overviewBarOn}/>
               </li>
             <li className={styles.linkContainer}>
               <input type='radio' onClick={()=> navigate(`/products/${id}/features`)} className={styles.links} name='link' id='features' checked={featureChecked} onChange={handleRadioChange}/>
               <label htmlFor="features">Features</label>
-              <img src="/public/images/icon-visited-link.svg" alt="" className={featureBarOn}/>
+              <img src="/src/assets/visited-link.svg" alt="" className={featureBarOn}/>
             </li>
         </ul>
       </div>

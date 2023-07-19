@@ -12,7 +12,7 @@ const ShoppingCard = ({product, name, price}) => {
     <div className={styles.cardContainer}>
 
       <div className={styles.imgContainer}>
-        <img src="/public/images/headphone.png" alt="" />
+        <img src="src/assets/headphone.png" alt="" />
       </div>
 
         <div className={styles.container}>
@@ -23,11 +23,11 @@ const ShoppingCard = ({product, name, price}) => {
 
       <div className={styles.buttonsContainer}>
         <div className={styles.quantityContainer}>
-          <button className={styles.button} onClick={() => removeOneProduct(product.id)}><img src="/public/images/icon-minus.svg" alt="" className={styles.quantButton} /></button>
+          <button className={styles.button} onClick={() => removeOneProduct(product.id)}><img src="/src/assets/minus.svg" alt="" className={styles.quantButton} /></button>
           <p>{product.quantity}</p>
-          <button className={styles.button} onClick={() => handleAddProduct(product)}><img src="/public/images/icon-plus.svg" alt="" className={styles.quantButton} /></button>
+          <button className={styles.button} onClick={() => handleAddProduct(product)}><img src="/src/assets/plus.svg" alt="" className={styles.quantButton} /></button>
         </div>
-          <button className={styles.button} onClick={() => handleRemoveFromCart(product)}><img className={styles.more} src="/public/images/icon-trash-2.svg" alt="" /></button>
+          <button className={styles.button} onClick={() => handleRemoveFromCart(product)}><img className={styles.more} src="/src/assets/trash.svg" alt="" /></button>
       </div>
         </div>
     </div>

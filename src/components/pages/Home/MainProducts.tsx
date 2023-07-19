@@ -1,4 +1,4 @@
-import {useState } from 'react'
+import {useState, useContext } from 'react'
 import styles from './MainProducts.module.css'
 import Filters from './Filters'
 import ShopCarousel from './Carousels/ShopCarousel'
@@ -12,6 +12,7 @@ const MainProducts = () => {
     setFilter(value)
   }
   
+
   return (
     <>
     <div className={styles.productsContainer}>

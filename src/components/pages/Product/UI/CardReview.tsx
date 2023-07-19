@@ -5,7 +5,7 @@ const CardReview = ({userName, review, rating}) => {
   return (
     <div>
       <div className={styles.reviewContainer}>
-        <img src="/public/images/user-photo.svg" alt="" />
+        <img src="/src/assets/user-photo.svg" alt="" />
         <div className={styles.stars}>
           <h2 className={styles.userName}>{userName}</h2>
           <Stars rating={rating} />

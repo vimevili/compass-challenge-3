@@ -5,12 +5,12 @@ import ProductCard from './UI/ProductCard'
 import useFetch from '../../hooks/useFetch'
 import {Link} from 'react-router-dom'
 import { motion} from 'framer-motion'
-import returnIcon from '../../../../public/images/icon-chevron-left.svg'
+import returnIcon from '../../../assets/return.svg'
 
 const SearchPage = () => {
-const [search, setSearch] = useState('');
-const { data, loading, error} = useFetch();
-const navigate = useNavigate();
+  const [search, setSearch] = useState('');
+  const { data, loading, error} = useFetch();
+  const navigate = useNavigate();
 
 const filteredProducts:[Product] = data && search.length > 0 ? data.filter((product) =>
 product.name.toLowerCase().includes(search.toLowerCase())) : [];
@@ -33,12 +33,12 @@ const popularProducts = [
         <button onClick={() => navigate(-1)} style={{background: 'none', border: 'none'}}><img src={returnIcon} alt="" /></button>
           <h2 className={styles.search}>Search</h2>
           <Link to='/cart'>
-            <img src="/public/images/icon-shopping-cart.svg" alt="" />
+            <img src="/src/assets/shopping-cart.svg" alt="" />
           </Link>
         </div>
       {/* SEARCH BAR */}
         <div className={styles.inputs}>
-          <img src="public/images/icon-search.svg" id='img-lock' alt="" />
+          <img src="/src/assets/search.svg" id='img-lock' alt="" />
           <input
             type="search"
             placeholder="Search headphone"
@@ -58,7 +58,8 @@ const popularProducts = [
                 name={product.name}
                 reviews={product.reviews}
                 rating={product.rating}
-                price={product.price}/>
+                price={product.price}
+                category='Headphones'/>
               </Link>
             </li>)}
           </ul>
@@ -68,12 +69,13 @@ const popularProducts = [
         <ul className={styles.productContainer}>
             {filteredProducts.map((product, index) =>
             <li key={index}>
-              <Link to={'/products/${product.id}/overview'}>
+              <Link to={'/products/${product.id}/overview'} className={styles.link}>
                 <ProductCard
                 name={product.name}
                 reviews={product.reviews.length}
                 rating={product.rating}
-                price={product.price}/>
+                price={product.price}
+                category={product.category}/>
               </Link>
             </li>)}
         </ul>

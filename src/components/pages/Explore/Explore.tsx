@@ -3,14 +3,15 @@ import {useState} from 'react'
 import styles from './Explore.module.css'
 import FilterButton from './Filters/FilterButton'
 import AllProducts from './AllProducts';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
+
 const Explore = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSortBy, setSelectedSortBy] = useState(null);
   const {data} = useFetch();
   const [filteredProducts, setFilteredProducts] = useState()
   const [loading, setLoading] = useState(false)
-  
+  const navigate = useNavigate()
   function getComparator(selectedSortBy) {
     switch (selectedSortBy) {
       case 'Popularity':
@@ -41,39 +42,42 @@ const Explore = () => {
     let dataFiltered;
     switch (selectedSortBy) {
       case 'Popularity':
-          dataFiltered = !filteredProducts ? data.sort(comparator) : filteredProducts.sort(comparator);
+          dataFiltered = !selectedCategory ? data.sort(comparator) : filteredProducts.sort(comparator);
           
           break;
           case 'Newest':
-            dataFiltered = !filteredProducts ? data.sort(comparator) : filteredProducts.sort(comparator);
+            dataFiltered = !selectedCategory ? data.sort(comparator) : filteredProducts.sort(comparator);
             console.log(dataFiltered);
           break;
         case 'Oldest':
-          dataFiltered = !filteredProducts ? data.sort(comparator) : filteredProducts.sort(comparator);
+          dataFiltered = !selectedCategory ? data.sort(comparator) : filteredProducts.sort(comparator);
           break;
         case 'High Price':
-          dataFiltered = !filteredProducts ? data.sort(comparator) : filteredProducts.sort(comparator);
+          dataFiltered = !selectedCategory ? data.sort(comparator) : filteredProducts.sort(comparator);
           break;
         case 'Low Price':
-          dataFiltered = !filteredProducts ? data.sort(comparator) : filteredProducts.sort(comparator);
+          dataFiltered = !selectedCategory ? data.sort(comparator) : filteredProducts.sort(comparator);
           break;
         case 'Review':
-          dataFiltered = !filteredProducts ? data.sort(comparator) : filteredProducts.sort(comparator);
+          dataFiltered = !selectedCategory ? data.sort(comparator) : filteredProducts.sort(comparator);
           break;
         default:
           break;
       }
       setFilteredProducts(dataFiltered);
   }
-   
+
   return (
     <div className={styles.body}>
 
       <div className={styles.headerIcons}>
-        <a href=""><img src="public/images/icon-chevron-left.svg" alt="" /></a>
+        <button onClick={() => navigate(-1)}>
+          <img src="/src/assets/return.svg" alt="" />
+        </button>
         <Link to='/cart'>
-          <img src="/public/images/icon-shopping-cart.svg" alt="" />
-        </Link>      </div>
+          <img src="/src/assets/shopping-cart.svg" alt="" />
+        </Link>
+      </div>
 
      <div className={styles.header}>
        <p className={styles.titulo}>Featured products</p>
@@ -81,6 +85,8 @@ const Explore = () => {
 
        <FilterButton 
           setSelectedCategory = {setSelectedCategory}
+          selectedCategory={selectedCategory}
+          selectedSortBy={selectedSortBy}
           setSelectedSortBy={setSelectedSortBy}
           applyFiltersAndSort={applyFiltersAndSort}
           setLoading={setLoading}/>

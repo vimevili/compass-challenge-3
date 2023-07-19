@@ -1,31 +1,33 @@
 import {useState} from 'react'
 import styles from './CategoryFilters.module.css'
 
-const CategoryFilters = ({setSelectedCategory}) => {
-
-  const [selectedOption, setSelectedOption] = useState();
+const CategoryFilters = ({clearFilters, selectedCategory, setSelectedCategory}) => {
   
   const handleOptionChange = ({target}) => {
-    setSelectedOption(target.value);
     setSelectedCategory(target.value)
+  };
+
+  const handleClearFilters = () => {
+    setSelectedCategory(null)
+    clearFilters()
   };
 
   return (
     <div className={styles.filterContainer}>
         <input type="radio" 
-        checked={selectedOption === 'Headphones'} 
-        value="Headphones"
+        checked={selectedCategory === 'Headphone'} 
+        value="Headphone"
         id="Headphone" 
-        name="filter" 
+        name="category-filter" 
         className={styles.radioInput} 
         onChange={handleOptionChange}/>
         <label htmlFor="Headphone" className={styles.categoryLabel}>Headphone</label>
 
         <input type="radio" 
-        checked={selectedOption === 'Headsets'} 
-        value="Headsets" 
+        checked={selectedCategory === 'Headset'} 
+        value="Headset" 
         id="Headset" 
-        name="filter" 
+        name="category-filter" 
         className={styles.radioInput} 
         onChange={handleOptionChange}/>
         <label htmlFor="Headset" className={styles.categoryLabel}>Headset</label>

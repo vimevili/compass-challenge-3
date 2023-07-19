@@ -11,12 +11,12 @@ const AllProductsCard = ({name, price, src, rating, reviews}) => {
           <div className={styles.reviewsContainer}>
           <div className={styles.reviews}>
             <div className={styles.stars}>
-                <img src="/public/images/star-filled.svg" alt="" />
+                <img src="/src/assets/star.svg" alt="" />
                 <p className={styles.review}>{rating}</p>
             </div>
             <p className={styles.review}>{reviews} Reviews</p>
         </div>
-          <img className={styles.more} src="/public/images/icon-more-vertical.svg" alt="" />
+          <img className={styles.more} src="/src/assets/more.svg" alt="" />
       </div>
     </div>
   )

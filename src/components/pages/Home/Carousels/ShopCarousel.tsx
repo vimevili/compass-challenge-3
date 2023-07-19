@@ -2,17 +2,10 @@ import {motion} from 'framer-motion'
 import ShopCard from '../UI/ShopCard'
 import styles from './ShopCarousel.module.css'
 import {Link, useParams} from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
 
 const ShopCarousel = ({filter}) => {
   const { id } = useParams();
-  console.log(id);
-  const [width, setWidth] = useState(0)
-  const carousel = useRef()
 
-  useEffect(() => {
-    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
-  }, [])
   const headphoneSample = [
     {name:"Bluetooth Sports Headphones", id:3},
     {name:"Premium Over-Ear Headphones", id:5}
@@ -22,12 +15,12 @@ const ShopCarousel = ({filter}) => {
     {name:"Wireless Gaming Headset", id:4},
     {name:"Budget Wired Headset", id:6}
   ]
-  
+
   return (
-    <motion.div className={styles.carousel} ref={carousel} whileTap={{cursor: 'grabbing'}}>
+    <motion.div className={styles.carousel} whileTap={{cursor: 'grabbing'}}>
             <motion.div 
               drag='x' 
-              dragConstraints={{ right: 0, left: -width}}
+              dragConstraints={{ right: 0, left: -340}}
               initial={{x: '100%'}}
               animate={{x: 0}}
               exit={{x: '100%'}}
@@ -36,7 +29,7 @@ const ShopCarousel = ({filter}) => {
                 <ul className={styles.inner}>
                   {headphoneSample.map((headphone) => 
                       <li key={headphone.id}>
-                        <Link to={`/products/${headphone.id}/overview/`} className={styles.link} >
+                        <Link  to={`/products/${headphone.id}/overview/`} className={styles.link}>
                           <ShopCard title={headphone.name} filter='Headphone'/>
                         </Link>
                       </li>)} 

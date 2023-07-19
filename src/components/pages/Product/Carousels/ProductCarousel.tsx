@@ -8,8 +8,8 @@ const ProductCarousel = () => {
             <motion.div className={styles.inner} 
               drag='x' 
               dragConstraints={{right: 0, left: -270}}>
-                <img src="/public/images/carousel-1.png" alt="" />                
-                <img src="/public/images/carousel-2.png" alt="" />                
+                <img src="src/assets/carousel-1.png" alt="" />                
+                <img src="src/assets/carousel-2.png" alt="" />                
             </motion.div>
         </motion.div>
   )

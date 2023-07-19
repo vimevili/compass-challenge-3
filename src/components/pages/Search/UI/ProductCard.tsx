@@ -1,15 +1,17 @@
 import styles from './ProductCard.module.css'
 
-const ProductCard = ({name, reviews, price, rating}) => {
+const ProductCard = ({name, reviews, category, price, rating}) => {
+  console.log(category);
+  
   return (
     <div className={styles.container}>
 
       <div className={styles.imgContainer}>
-        <img src="/public/images/headphone.png" alt="" />
+        <img src={category === 'Headphones' ? "src/assets/headphone.png" : "src/assets/headset.png"} alt="" />
       </div>
 
       <div className={styles.textContainer}>
-        <div>
+        <div className={styles.header}>
           <h2 className={styles.title}>{name}</h2>
           <h3 className={styles.price}>USD {price}</h3>
         </div>
@@ -17,7 +19,7 @@ const ProductCard = ({name, reviews, price, rating}) => {
         <div className={styles.reviewsContainer}>
           <div className={styles.reviews}>
             <div className={styles.stars}>
-                <img src="/public/images/star-filled.svg" alt="" />
+                <img src="/src/assets/star.svg" alt="" />
                 <p className={styles.review}>{rating}</p>
             </div>
             <p className={styles.review}>{reviews} Reviews</p>
@@ -25,7 +27,7 @@ const ProductCard = ({name, reviews, price, rating}) => {
 
         </div>
       </div>
-          <img className={styles.more} src="/public/images/icon-more-vertical.svg" alt="" />
+          <img className={styles.more} src="/src/assets/more.svg" alt="" />
     </div>
   )
 }

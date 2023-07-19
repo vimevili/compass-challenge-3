@@ -4,6 +4,7 @@ import {getAuth, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth'
 const firebaseConfig = {
   apiKey: "AIzaSyBht0kBTEVvKr9Cv_J_goHDYCIaE_tpKQY",
   authDomain: "compass-challange-3.firebaseapp.com",
+  databaseURL: "https://compass-challange-3-default-rtdb.firebaseio.com",
   projectId: "compass-challange-3",
   storageBucket: "compass-challange-3.appspot.com",
   messagingSenderId: "229640339190",
