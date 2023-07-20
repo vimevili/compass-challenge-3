@@ -1,6 +1,6 @@
 .body {
     background: #fff; 
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .header {
@@ -44,5 +44,10 @@
     background: var(--colors-white, #FFF); 
     min-width: 20rem;
     padding: 0.625rem 0.9375rem;
+}
+
+.reset {
+    background: none;
+    border: none;
 }
 

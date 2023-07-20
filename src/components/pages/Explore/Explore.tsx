@@ -71,7 +71,7 @@ const Explore = () => {
     <div className={styles.body}>
 
       <div className={styles.headerIcons}>
-        <button onClick={() => navigate(-1)}>
+        <button onClick={() => navigate(-1)} className={styles.reset}>
           <img src="/src/assets/return.svg" alt="" />
         </button>
         <Link to='/cart'>

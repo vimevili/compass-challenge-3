@@ -2,10 +2,10 @@ import styles from './Home.module.css'
 import MainProducts from './MainProducts';
 import {Link} from 'react-router-dom'
 import { motion} from 'framer-motion'
-import { UserContext } from '../../../contexts/UserContext';
-import {useContext} from 'react'
-const Home = () => {    
-  const {currentUser} = useContext(UserContext)
+import { useRef, useState } from 'react';
+import  Menu  from './Menu/Menu';
+
+const Home = () => {   
   return (
     <motion.div 
     initial={{ opacity: 0, x: '100%' }}
@@ -15,7 +15,8 @@ const Home = () => {
     layout>
       <div className={styles.body}>
         <div className={styles.header}>
-        <p className={styles.subtitulo}>Hi, {currentUser && currentUser.displayName}</p> 
+          <Menu />
+        <p className={styles.subtitulo}>Hi, Vinicius</p> 
           {/* <p >Hi, Andrea</p> */}
           <h1 className={styles.titulo}>What are you looking for today?</h1>
         </div>
