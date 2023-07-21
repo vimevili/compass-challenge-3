@@ -106,18 +106,20 @@ input:focus {
     font-size: .75rem;
 }
 
-.emailError {
+.spanPassword {
     position: absolute;
-    top: 26.1rem; 
+    top: 31rem; 
     left: 2rem;
-    left: rem;
-    color: rgb(228, 65, 65);
+    color:white;
     font-size: .75rem;
-    border: none;
 }
 
-.displayNone {
-    display: none;
+.spanEmail {
+    position: absolute;
+    top: 26.2rem;
+    color:white;
+    font-size: .75rem;
+    border: none;
 }
 
 .errorFlex {

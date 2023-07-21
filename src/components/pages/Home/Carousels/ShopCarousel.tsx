@@ -20,7 +20,7 @@ const ShopCarousel = ({filter}) => {
     <motion.div className={styles.carousel} whileTap={{cursor: 'grabbing'}}>
             <motion.div 
               drag='x' 
-              dragConstraints={{ right: 0, left: -340}}
+              dragConstraints={{ right: 0, left: -300}}
               initial={{x: '100%'}}
               animate={{x: 0}}
               exit={{x: '100%'}}

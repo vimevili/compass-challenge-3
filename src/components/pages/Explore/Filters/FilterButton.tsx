@@ -20,7 +20,7 @@ export default function FilterButton({ setLoading, applyFiltersAndSort, selected
 
     setTimeout(() => {
       setLoading(false);
-    }, 700);
+    }, 1500);
   }
 
   function clearFilters() {

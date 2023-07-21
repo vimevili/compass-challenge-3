@@ -15,7 +15,7 @@ const AllProducts = ({loading, products}) => {
 
     setTimeout(() => {
       setPageLoading(false);
-    }, 500);    
+    }, 1500);    
   },[])
 
   return (
