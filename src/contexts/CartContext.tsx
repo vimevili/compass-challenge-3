@@ -1,6 +1,5 @@
 import { useState, createContext } from 'react';
 import Swal from 'sweetalert2';
-import styles from 'sweetalert2/src/sweetalert2.scss'
 
 export const CartContext = createContext();
 
@@ -38,6 +37,24 @@ export const CartProvider = ({ children }) => {
     setCartProducts(updatedCart);
   }
 
+  function clearCart(cartProducts) {
+    if (cartProducts) {
+      return Swal.fire({
+        customClass : {
+          confirmButton: 'swal2-button'
+        },
+        title: 'Are you sure?',
+        text: 'Do you wish to remove all products from your cart?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, remove them!'
+      }).then((result) => {
+        if(result.isConfirmed) {
+          setCartProducts([]);
+        }
+      });
+  } return null
+  }
   function addToCart(selectedProduct: selectedProduct) {
     const updatedProduct: cartProduct = { ...selectedProduct, quantity: 1 };
     setCartProducts([...cartProducts, updatedProduct]);
@@ -59,7 +76,6 @@ export const CartProvider = ({ children }) => {
       showCancelButton: true,
       confirmButtonText: 'Yes, remove it!'
     }).then((result) => {
-      console.log(result)
       return result.isConfirmed;
     });
   }
@@ -129,6 +145,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartProducts,
+        clearCart,
         setCartProducts,
         handleAddProduct,
         handleRemoveFromCart,

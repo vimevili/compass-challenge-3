@@ -1,37 +1,36 @@
 import './App.css'
 import { UserProvider } from './contexts/UserContext'
-import { useState } from 'react';
-import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import SignUp from './components/pages/Sign/SignUp'
-import SignIn from './components/pages/Sign/SignIn'
-import UserLogged from './components/pages/UserLogged';
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/Home/Home'
+import SearchPage from './pages/Search/SearchPage'
+import Explore from './pages/Explore/Explore'
+import Overview from './pages/Product/Overview'
+import Specification from './pages/Product/Specification'
+import ShoppingCart from './pages/ShoppingCart/ShoppingCart'
+import SignUp from './pages/SignUp/SignUp'
+import SignIn from './pages/SignIn/SignIn'
+import PrivateRoute from './services/PrivateRoute';
 import { CartProvider } from './contexts/CartContext';
 import { AnimatePresence } from 'framer-motion';
-import {motion} from 'framer-motion'
 
 function App() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const [user, setUser] = useState(null)
-  const isLogged = () => {
-    if(user) localStorage.setItem('userLogged', user.accessToken)
-  }
-  isLogged();
 
   return (
     <>
     <UserProvider>
       <CartProvider>
         <AnimatePresence mode='wait'
-        initial={false}
-        custom={{ action: navigate }}>
-          <motion.div >
+        initial={false}>
               <Routes location={location} key={location.pathname}>
-                  <Route path="/" element={<SignIn setUser={setUser}/>} />
-                  <Route path="/sign-up" element={<SignUp setUser={setUser}/>} />
+                  <Route path="/" element={<SignIn />} />
+                  <Route path="/sign-up" element={<SignUp />} />
+                  <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
+                  <Route path="/products" element={<PrivateRoute><Explore /></PrivateRoute>} />
+                  <Route path="/search" element={<PrivateRoute><SearchPage /></PrivateRoute>} />
+                  <Route path="/products/:id/overview" element={<PrivateRoute><Overview /></PrivateRoute>} />
+                  <Route path="/products/:id/features" element={<PrivateRoute><Specification /></PrivateRoute>} />
+                  <Route path="/cart" element={<PrivateRoute><ShoppingCart /></PrivateRoute>} />
               </Routes>
-              {user && <UserLogged user={user}/>}
-          </motion.div>
         </AnimatePresence>
       </CartProvider>
     </UserProvider>

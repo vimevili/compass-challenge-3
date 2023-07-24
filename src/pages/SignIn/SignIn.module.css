@@ -1,0 +1,71 @@
+.body {
+    background-image: url(/src/assets/images/sign-bg.png);
+    background-repeat: no-repeat;
+    padding: 1.5rem;
+    margin: 0;
+    min-height: 100vh;
+    color: #FFF;
+    font-family: 'DM Sans', sans-serif;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    border-radius: 0.625rem;
+    border: 1px solid #BABABA;
+    background: var(--colors-white, #FFF);
+    padding: 1rem;
+    gap: 0.75rem;
+    position: relative;
+}
+
+.subtitulo {
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-align: center;
+    font-weight: 700;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 5.5rem auto 15rem auto; 
+}
+
+.signinContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.forgot {
+    color: #fff;
+    text-decoration: none;
+    padding-bottom: 2rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+    background: none;
+    border: none;
+}
+
+form {
+    text-align: center;
+}
+
+.singup {
+    color: #0ACF83;
+    background: none;
+    border: none;
+    text-decoration: underline;
+}
+
+.socialContainer{
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem auto;
+}
+
+
