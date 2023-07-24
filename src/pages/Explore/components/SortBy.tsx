@@ -1,16 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import styles from './SortBy.module.css'
 
-const SortBy = ({clearFilters, selectedSortBy, setSelectedSortBy}) => {
+const SortBy = ({selectedSortBy, setSelectedSortBy}) => {
 
   const filters = ['Popularity', 'Newest', 'Oldest', 'High Price', 'Low Price', 'Review']
   
   const handleRadioChange = ({target}) => {
     setSelectedSortBy(target.value)
-  };
-
-  const handleClearFilters = () => {
-    setSelectedSortBy(null)
-    clearFilters()
   };
 
   return (

@@ -1,5 +1,5 @@
-import {useContext } from 'react'
-import styles from './Form.module.css'
+import {FormEvent, useContext } from 'react'
+import styles from './Form.module.css';
 import { UserContext } from "../contexts/UserContext";
 import {Link} from 'react-router-dom'
 
@@ -8,18 +8,20 @@ const Form = ({type}) => {
   const {email,
         password, 
         signIn,
+        signUp,
         validateEmail,
         validatePassword,
         error,
         passwordError,
         emailError } = useContext(UserContext)  
     
-  function handleSubmit(e) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>): void {
     if (type === 'In') {
       signIn(e)
     }
     signUp(e)
   }      
+  
   return (
 
     <form onSubmit={(e) => handleSubmit(e)}>

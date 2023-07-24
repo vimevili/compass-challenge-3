@@ -1,23 +1,41 @@
 import { auth, googleProvider, facebookProvider } from '../services/firebase';
 import { signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword  } from 'firebase/auth';
-import { useState, createContext } from 'react';
+import { useState, FormEvent, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import verifyError from '../contexts/verifyError'
 
-export const UserContext = createContext();
+interface UserContextData {
+  email: string;
+  password: string;
+  loadingUser: boolean;
+  signIn: (e: FormEvent<HTMLFormElement>) => void;
+  signUp: (e: FormEvent<HTMLFormElement>) => void;
+  logOut: () => void;
+  signInWithGoogle: (e: FormEvent<HTMLFormElement>) => void;
+  signInWithFacebook: (e: FormEvent<HTMLFormElement>) => void;
+  validateEmail: (email: string) => void;
+  validatePassword: (password: string) => void;
+  error: string;
+  passwordError: string;
+  emailError: string; 
+  isLogged: () => boolean;
+}
 
-export const UserProvider = ({ children }) => {
+export const UserContext = createContext<UserContextData>({} as UserContextData);
+
+export const UserProvider: React.FC = ({ children }) => {
+
 //States e consts
-  const [user, setUser] = useState()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loadingUser, setLoadingUser] = useState(false)
-  const [error, setError] = useState('')
+  const [user, setUser] = useState<object>()
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [loadingUser, setLoadingUser] = useState<boolean>(false)
+  const [error, setError] = useState<string>('')
   const navigate = useNavigate();
 
 //Filtered errors
-  const passwordError = error && error.includes('password') ? error : '';
-  const emailError = error && error.includes('email') ? error : '';
+  const passwordError: string = error && error.includes('password') ? error : '';
+  const emailError: string = error && error.includes('email') ? error : '';
 
 // User logged verification
   function isLogged(){
@@ -27,7 +45,7 @@ export const UserProvider = ({ children }) => {
 }
 
 // SignIn functions
-  const signIn = (e) => {
+  const signIn = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -46,7 +64,7 @@ export const UserProvider = ({ children }) => {
       });
   };
 
-  function validateEmail(email) {
+  function validateEmail(email: string) {
     setEmail(email)
     if ((/^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i.test(email))) {
       setError('')
@@ -55,7 +73,7 @@ export const UserProvider = ({ children }) => {
     }
   }
 
-  function validatePassword(password) {
+  function validatePassword(password: string) {
     setPassword(password)
     if (password.length >= 6) {
       setError('')
@@ -63,7 +81,7 @@ export const UserProvider = ({ children }) => {
   }
   
 // SignUp functions 
-  const signUp = (e) => {
+  const signUp = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
       setUser(userCredential.user)
@@ -101,7 +119,7 @@ export const UserProvider = ({ children }) => {
   }
 
 // Google authentication
-  function signInWithGoogle(e){
+  function signInWithGoogle(e: FormEvent<HTMLFormElement>){
     e.preventDefault();
     signInWithPopup(auth, googleProvider).then((userCredential)=>{
       setUser(userCredential.user)
@@ -119,7 +137,7 @@ export const UserProvider = ({ children }) => {
     })
   }
 // Facebook authentication 
-  const signInWithFacebook=(e)=>{
+  const signInWithFacebook=(e: FormEvent<HTMLFormElement>)=>{
     e.preventDefault()
     signInWithPopup(auth, facebookProvider).then((result)=>{
       setUser(result.user);

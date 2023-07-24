@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import useFetch from '../../hooks/useFetch';
 import {useState} from 'react'
 import styles from './Explore.module.css'
@@ -31,20 +32,20 @@ const Explore = () => {
   const {data} = useFetch();
   const navigate = useNavigate()
 
-  function getComparator(selectedSortBy) {
+  function getComparator(selectedSortBy: string) {
     switch (selectedSortBy) {
       case 'Popularity':
-        return (a, b) => +b.rating - +a.rating;
+        return (a: number, b: number) => +b.rating - +a.rating;
       case 'Newest':
-        return (a, b) => new Date(b.created_at) - new Date(a.created_at);
+        return (a: Date | string, b: Date | string) => new Date(b.created_at) - new Date(a.created_at);
       case 'Oldest':
-        return (a, b) => new Date(a.created_at) - new Date(b.created_at);
+        return (a: Date | string, b: Date | string) => new Date(a.created_at) - new Date(b.created_at);
       case 'High Price':
-        return (a, b) => +(b.price.substring(1)) - +(a.price.substring(1));
+        return (a: number, b: number) => +(b.price.substring(1)) - +(a.price.substring(1));
       case 'Low Price':
-        return (a, b) => +(a.price.substring(1)) - +(b.price.substring(1));
+        return (a: number, b: number) => +(a.price.substring(1)) - +(b.price.substring(1));
       case 'Review':
-        return (a, b) => b.reviews.length - a.reviews.length;
+        return (a: number, b: number) => b.reviews.length - a.reviews.length;
       default:
         return null;
     }
