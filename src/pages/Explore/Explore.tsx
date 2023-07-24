@@ -4,14 +4,30 @@ import styles from './Explore.module.css'
 import FilterButton from './components/FilterButton'
 import AllProducts from './components/AllProducts';
 import {Link, useNavigate} from 'react-router-dom'
-import {motion} from 'framer-motion'
+import {AnimatePresence, motion} from 'framer-motion'
 
 const Explore = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [selectedSortBy, setSelectedSortBy] = useState<string>('');
-  const [filteredProducts, setFilteredProducts] = useState()
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>()
   const [loading, setLoading] = useState<boolean>(false)
 
+  type Product = {
+    rating: number;
+    price: string;
+    name: string;
+    description: string;
+    category: string;
+    created_at: Date;
+    reviews: {
+      user: string;
+      description: string;
+      rating: number;
+      date: Date;
+      id: number;
+    }[];
+    id: number;
+  }
   const {data} = useFetch();
   const navigate = useNavigate()
 
@@ -55,41 +71,42 @@ const Explore = () => {
     setFilteredProducts(dataFiltered);
   }
   
-
   return (
-    <motion.div className={styles.body}
-    initial={{ x: '100%' }}
-    animate={{ x: 0 }}
-    exit={{ x: '-100%' }}
-    transition={{ duration: 0.3, ease: 'easeInOut' }}>
+    <AnimatePresence>
+      <motion.div className={styles.body}
+      initial={{ x: '100%' }}
+      animate={{ x: 0 }}
+      exit={{ x: '-100%' }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}>
 
-      <div className={styles.headerIcons}>
-        <button onClick={() => navigate(-1)} className={styles.reset}>
-          <img src="/src/assets/images/return.svg" alt="" />
-        </button>
-        <Link to='/cart'>
-          <img src="/src/assets/images/shopping-cart.svg" alt="" />
-        </Link>
+        <div className={styles.headerIcons}>
+          <button onClick={() => navigate(-1)} className={styles.reset}>
+            <img src="/src/assets/images/return.svg" alt="" />
+          </button>
+          <Link to='/cart'>
+            <img src="/src/assets/images/shopping-cart.svg" alt="" />
+          </Link>
+        </div>
+
+      <div className={styles.header}>
+        <p className={styles.titulo}>Featured products</p>
+        <h1 className={styles.subtitulo}>See all products</h1>
+
+        <FilterButton 
+            setSelectedCategory = {setSelectedCategory}
+            selectedCategory={selectedCategory}
+            selectedSortBy={selectedSortBy}
+            setSelectedSortBy={setSelectedSortBy}
+            applyFiltersAndSort={applyFiltersAndSort}
+            setLoading={setLoading}/>
       </div>
-
-     <div className={styles.header}>
-       <p className={styles.titulo}>Featured products</p>
-       <h1 className={styles.subtitulo}>See all products</h1>
-
-       <FilterButton 
-          setSelectedCategory = {setSelectedCategory}
-          selectedCategory={selectedCategory}
-          selectedSortBy={selectedSortBy}
-          setSelectedSortBy={setSelectedSortBy}
-          applyFiltersAndSort={applyFiltersAndSort}
-          setLoading={setLoading}/>
-     </div>
-     {!filteredProducts ? 
-      <AllProducts products={data} loading={loading}/> 
-      : <AllProducts products={filteredProducts} loading={loading}/>}
+      {!filteredProducts ? 
+        <AllProducts products={data} loading={loading}/> 
+        : <AllProducts products={filteredProducts} loading={loading}/>}
 
 
-     </motion.div>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

@@ -12,10 +12,11 @@ import Loading from '../../components/Loading/Loading';
 
 const Overview = () => {
   
-  const [overChecked, setOverChecked] = useState(true)
-  const [featureChecked, setFeatureChecked] = useState(false)
+  const [overChecked, setOverChecked] = useState<boolean>(true)
+  const [featureChecked, setFeatureChecked] = useState<boolean>(false)
   const overviewBarOn = overChecked ? styles.barIconOn : styles.barIconOff
   const featureBarOn = featureChecked ? styles.barIconOn : styles.barIconOff
+
   const handleRadioChange = () => {
     if (overChecked) setOverChecked(false), setFeatureChecked(true)
     if (featureChecked) setFeatureChecked(false), setOverChecked(true)
@@ -24,7 +25,6 @@ const Overview = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const {data, loading} = useFetch()
-
   
   const productsData = useContext(CartContext)
   const {handleAddProduct} = productsData

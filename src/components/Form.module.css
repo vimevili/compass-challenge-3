@@ -93,3 +93,12 @@
     border: none;
     color: #BABABA;
 }
+
+.forgot {
+    text-decoration: none;
+    color: var(--colors-white, #FFF);
+    font-family: DM Sans;
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.25rem; 
+}

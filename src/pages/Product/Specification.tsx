@@ -8,8 +8,8 @@ import { CartContext } from '../../contexts/CartContext';
 import Loading from '../../components/Loading/Loading';
 
 const Specification = () => {
-  const [overChecked, setOverChecked] = useState(false)
-  const [featureChecked, setFeatureChecked] = useState(true)
+  const [overChecked, setOverChecked] = useState<boolean>(false)
+  const [featureChecked, setFeatureChecked] = useState<boolean>(true)
   const overviewBarOn = overChecked ? styles.barIconOn : styles.barIconOff
   const featureBarOn = featureChecked ? styles.barIconOn : styles.barIconOff
 

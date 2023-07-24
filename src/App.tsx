@@ -12,6 +12,7 @@ import SignIn from './pages/SignIn/SignIn'
 import PrivateRoute from './services/PrivateRoute';
 import { CartProvider } from './contexts/CartContext';
 import { AnimatePresence } from 'framer-motion';
+import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
               <Routes location={location} key={location.pathname}>
                   <Route path="/" element={<SignIn />} />
                   <Route path="/sign-up" element={<SignUp />} />
+                  <Route path="/forgot" element={<ForgotPassword />} />
                   <Route path="/home" element={<PrivateRoute><Home /></PrivateRoute>} />
                   <Route path="/products" element={<PrivateRoute><Explore /></PrivateRoute>} />
                   <Route path="/search" element={<PrivateRoute><SearchPage /></PrivateRoute>} />

@@ -1,4 +1,4 @@
-import {motion} from 'framer-motion'
+import {AnimatePresence, motion} from 'framer-motion'
 import FeaturedCard from './FeaturedCard'
 import styles from './FeaturedCarousel.module.css'
 
@@ -11,24 +11,25 @@ const FeaturedCarousel = () => {
     ] 
 
   return (
-    <motion.div className={styles.carousel} whileTap={{cursor: 'grabbing'}}>
-            <motion.div className={styles.inner} 
-              drag='x' 
-              dragConstraints={{ right: 0, left: -165}}
-              initial={{x: '100%'}}
-              animate={{x: 0}}
-              exit={{x: '100%'}}
-              transition={{duration: 0.6}}>
-                {
-                featuredProducts.map((product, index) => {
-                    return <FeaturedCard 
-                    key={index}
-                    title={product.title} 
-                    price={product.price}
-                    src={product.src}/>                
-                }) }
-            </motion.div>
+    <AnimatePresence>
+       <motion.div className={styles.carousel} whileTap={{cursor: 'grabbing'}}>
+          <motion.div className={styles.inner} 
+            drag='x' 
+            dragConstraints={{ right: 0, left: -165}}
+            initial={{x: '100%'}}
+            animate={{x: 0}}
+            exit={{x: '100%'}}
+            transition={{duration: 0.6}}>
+            {featuredProducts.map((product, index) => {
+              return <FeaturedCard 
+                key={index}
+                title={product.title} 
+                price={product.price}
+                src={product.src}/>                
+              }) }
+          </motion.div>
         </motion.div>
+    </AnimatePresence>
   )
 }
 

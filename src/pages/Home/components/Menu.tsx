@@ -7,14 +7,14 @@ import Loading from '../../../components/Loading/Loading';
 import { UserContext } from '../../../contexts/UserContext';
 
 const Menu = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const controls = useAnimationControls();
   const navigate = useNavigate();
 
   const {user} = useContext(UserContext)
-  const socialUser = user && user.displayName
-  const userName = user && socialUser ? socialUser : 'user'
+  const socialUser: string = user && user.displayName
+  const userName: string = user && socialUser ? socialUser : 'user'
   
   async function closeMenu() {
     await controls.start("closed");

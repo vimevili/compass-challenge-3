@@ -1,6 +1,7 @@
 import {useContext } from 'react'
 import styles from './Form.module.css'
 import { UserContext } from "../contexts/UserContext";
+import {Link} from 'react-router-dom'
 
 const Form = ({type}) => {
 
@@ -48,6 +49,7 @@ const Form = ({type}) => {
                />
              </div>
              <span className={styles.spanPassword}>{error.includes('password') && passwordError}</span>
+             {type==='In' && <Link to='/forgot' className={styles.forgot}>Forgot Password</Link>}
              <button type="submit" className={styles.signButton}>
                Sign {type}
              </button>
