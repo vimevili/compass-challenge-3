@@ -2,8 +2,8 @@ import styles from './Specification.module.css'
 import {useState, useContext} from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch'
-import returnIcon from '/src/assets/images/return.svg'
-import cartIcon from '/src/assets/images/shopping-cart.svg'
+import returnIcon from '../../assets/images/return.svg'
+import cartIcon from '../../assets/images/shopping-cart.svg'
 import { CartContext, CartContextData } from '../../contexts/CartContext';
 import Loading from '../../components/Loading/Loading';
 

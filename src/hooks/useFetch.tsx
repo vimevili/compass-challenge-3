@@ -28,11 +28,11 @@ function useFetch() {
       setLoading(true);
       fetch(url)
         .then(response => response.json())
-        .then(json => {
+        .then((json: Product[]) => {
           setData(json);
           setLoading(false);
         })
-        .catch(error => {
+        .catch(() => {
           setError('Houve um erro ao solicitar os dados');
           setLoading(false);
         });

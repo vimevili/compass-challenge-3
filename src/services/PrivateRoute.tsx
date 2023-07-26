@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { UserContext } from '../contexts/UserContext';
 
 const PrivateRoute =  ({ children }: { children: JSX.Element }) => {

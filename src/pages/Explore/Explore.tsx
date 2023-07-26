@@ -5,6 +5,7 @@ import FilterButton from './components/FilterButton'
 import AllProducts from './components/AllProducts';
 import {Link, useNavigate} from 'react-router-dom'
 import {AnimatePresence, motion} from 'framer-motion'
+import { Product } from '../../contexts/CartContext';
 
 const Explore = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -12,22 +13,7 @@ const Explore = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>()
   const [loading, setLoading] = useState<boolean>(false)
 
-  type Product = {
-    rating: number;
-    price: string;
-    name: string;
-    description: string;
-    category: string;
-    created_at: Date;
-    reviews: {
-      user: string;
-      description: string;
-      rating: number;
-      date: Date;
-      id: number;
-    }[];
-    id: number;
-  }
+
   const {data} = useFetch();
   const navigate = useNavigate()
 

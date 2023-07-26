@@ -13,8 +13,7 @@ const Menu = () => {
   const navigate = useNavigate();
 
   const {user} = useContext(UserContext)
-  const socialUser: string = user && user.displayName
-  const userName: string = user && socialUser ? socialUser : 'user'
+  const socialUser: string = user && typeof user.displayName === 'string' ? user.displayName : '';
   
   async function closeMenu() {
     await controls.start("closed");
@@ -23,7 +22,7 @@ const Menu = () => {
   
   useEffect(() => {
     if (isOpen) {
-      controls.start("open");
+      controls.start("open").then(() => null).catch(() => null);
     }
   }, [controls, isOpen]);
 
@@ -45,7 +44,7 @@ const Menu = () => {
                 <img src="/src/assets/images/menu.svg" alt="" />
               </button>
         </DropdownMenu.Trigger>
-              <div className={styles.photoContainer}><img src={socialUser ? user.photoURL : '/src/assets/images/user-profile.svg'} alt="" className={styles.userPhoto}/></div>
+              <div className={styles.photoContainer}><img src={socialUser && user ? user.photoURL! : '/src/assets/images/user-profile.svg'} alt="" className={styles.userPhoto}/></div>
             </div>
 
         {isOpen && <DropdownMenu.Portal forceMount>
@@ -66,13 +65,13 @@ const Menu = () => {
             >
             <DropdownMenu.Content className={styles.DropdownMenuContent} sideOffset={4}>
                 <MenuItem  
-                    closeMenu={closeMenu}
+                    closeMenu={() => void closeMenu}
                     onSelect={() => setIsOpen(false)}
                 >
                     <img src="/src/assets/images/exit.svg" alt="" />
                 </MenuItem>
                 <MenuItem  
-                    closeMenu={closeMenu}
+                    closeMenu={() => void closeMenu}
                     onSelect={() => setIsOpen(false)}
                 >
                     <img src="/src/assets/images/home.svg" alt="" />
@@ -80,19 +79,19 @@ const Menu = () => {
                 </MenuItem>
 
                 <MenuItem 
-                  closeMenu={closeMenu}
+                  closeMenu={() => void closeMenu}
                   onSelect={() => navigate("/products")}
                 >
                   <img src="/src/assets/images/headphone-icon.svg" alt="" />
                 Products
                 </MenuItem>
                 <MenuItem 
-                closeMenu={closeMenu}
+                closeMenu={() => void closeMenu}
                 onSelect={() => navigate("/cart")}>
                 <img src="/src/assets/images/shopping-cart.svg" alt="" />Cart
                 </MenuItem>
                 <MenuItem 
-                closeMenu={closeMenu}
+                closeMenu={() => void closeMenu}
                 onSelect={() => logOut()}>
                 <img src="/src/assets/images/log-out.svg" alt="" />SignOut
                 </MenuItem>
@@ -107,34 +106,35 @@ export default Menu;
 
 function MenuItem ({
     children,
-    onSelect = () => {},
+    onSelect,
     closeMenu,
   }: {
     children: ReactNode;
-    onSelect?: () => void;
+    onSelect: () => void;
     closeMenu: () => void;
   }) {
     const controls = useAnimationControls();
 
     const sleep = (s: number) =>
   new Promise((resolve) => setTimeout(resolve, s * 1000));
+  
   return (
     <DropdownMenu.Item
-    onSelect={async (e) => {
+    onSelect={(e) => {
       e.preventDefault();
 
-      await controls.start({
+      controls.start({
         backgroundColor: "#fcfcfc",
         transition: { duration: 0.04 },
-      });
-      await controls.start({
+      }).then(() => null).catch(() => null);
+      controls.start({
         backgroundColor: "#fcfcfc",
 
         transition: { duration: 0.04 },
-      });
-      await sleep(0.075);
+      }).then(() => null).catch(() => null);
+      sleep(0.075).then(() => null).catch(() => null);
 
-      await closeMenu();
+      closeMenu();
       onSelect();
     }}
     className={styles.DropdownMenuItem} asChild

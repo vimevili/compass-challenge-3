@@ -1,5 +1,5 @@
 import styles from './FeaturedCard.module.css'
-type Props = {title: string, price: string, src: string}
+type Props = {title: string, price: string | number, src: string}
 const FeaturedCard = ({title, price, src}: Props) => {
   
   return (

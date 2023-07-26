@@ -4,23 +4,8 @@ import styles from './AllProducts.module.css'
 import {Link} from 'react-router-dom'
 import Loading from '../../../components/Loading/Loading';
 import {useEffect, useState } from 'react'
+import { Product } from '../../../contexts/CartContext';
 
-type Product = {
-  rating: number;
-  price: string;
-  name: string;
-  description: string;
-  category: string;
-  created_at: Date;
-  reviews: {
-    user: string;
-    description: string;
-    rating: number;
-    date: Date;
-    id: number;
-  }[];
-  id: number;
-}
 
 type Props = {loading: boolean, products: Product[]}
 

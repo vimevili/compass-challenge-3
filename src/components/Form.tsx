@@ -1,9 +1,10 @@
-import {FormEvent, useContext } from 'react'
+import {MouseEventHandler, useContext } from 'react'
 import styles from './Form.module.css';
 import { UserContext } from "../contexts/UserContext";
 import {Link} from 'react-router-dom'
+type Props = {type: string}
 
-const Form = ({type}) => {
+const Form = ({type}: Props) => {
 
   const {email,
         password, 
@@ -15,7 +16,7 @@ const Form = ({type}) => {
         passwordError,
         emailError } = useContext(UserContext)  
     
-  function handleSubmit(e: FormEvent<HTMLFormElement>): void {
+  function handleSubmit(e: MouseEventHandler<HTMLButtonElement>): void {
     if (type === 'In') {
       signIn(e)
     }
@@ -24,7 +25,7 @@ const Form = ({type}) => {
   
   return (
 
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form>
              <div className={styles.inputs}>
              <div className={!emailError ? styles.flex : styles.errorFlex}>
                <img src="/src/assets/images/email.svg" id='img-mail' alt="" />
@@ -52,7 +53,7 @@ const Form = ({type}) => {
              </div>
              <span className={styles.spanPassword}>{error.includes('password') && passwordError}</span>
              {type==='In' && <Link to='/forgot' className={styles.forgot}>Forgot Password</Link>}
-             <button type="submit" className={styles.signButton}>
+             <button onClick={() => void handleSubmit} className={styles.signButton}>
                Sign {type}
              </button>
          </div>
