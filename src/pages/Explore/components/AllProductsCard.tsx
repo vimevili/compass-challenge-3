@@ -1,6 +1,6 @@
 import styles from './AllProductsCard.module.css'
-
-const AllProductsCard = ({name, price, src, rating, reviews}) => {
+type Props = {name: string, price: string, src: string, rating: number, reviews: number}
+const AllProductsCard = ({name, price, src, rating, reviews}: Props) => {
   return (
     <div className={styles.container}>
           <img src={src} alt="" />

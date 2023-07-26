@@ -5,7 +5,26 @@ import {Link} from 'react-router-dom'
 import Loading from '../../../components/Loading/Loading';
 import {useEffect, useState } from 'react'
 
-const AllProducts = ({loading, products}) => {
+type Product = {
+  rating: number;
+  price: string;
+  name: string;
+  description: string;
+  category: string;
+  created_at: Date;
+  reviews: {
+    user: string;
+    description: string;
+    rating: number;
+    date: Date;
+    id: number;
+  }[];
+  id: number;
+}
+
+type Props = {loading: boolean, products: Product[]}
+
+const AllProducts = ({loading, products}: Props) => {
   const {error} = useFetch();
   const [pageLoading, setPageLoading] = useState<boolean>()
 

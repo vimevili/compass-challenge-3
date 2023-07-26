@@ -1,6 +1,6 @@
 import styles from './FeaturedCard.module.css'
-
-const FeaturedCard = ({title, price, src}) => {
+type Props = {title: string, price: string, src: string}
+const FeaturedCard = ({title, price, src}: Props) => {
   
   return (
     <div className={styles.container}>

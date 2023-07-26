@@ -1,6 +1,7 @@
 import styles from './SearchInput.module.css'
 
-const SearchInput = ({search, setSearch}) => {
+type Props = {search: string, setSearch: React.Dispatch<React.SetStateAction<string>>}
+const SearchInput = ({search, setSearch}: Props) => {
   return (
     <div className={styles.inputs}>
     <img src="/src/assets/images/search.svg" id='img-lock' alt="" />

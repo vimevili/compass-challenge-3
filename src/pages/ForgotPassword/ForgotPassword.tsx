@@ -1,4 +1,4 @@
-import { useState} from 'react'
+import { useState, FormEvent} from 'react'
 import styles from './ForgotPassword.module.css'
 import { auth } from '../../services/firebase'
 import { sendPasswordResetEmail } from 'firebase/auth'
@@ -12,13 +12,14 @@ const ForgotPassword = () => {
 
     const navigate = useNavigate()
     
-    function handleForgetPassword(e, email) {
-      e.preventDefault()
-      return sendPasswordResetEmail(auth, email).then(() => {
+    function handleForgetPassword(event: FormEvent<HTMLElement>, email: string)  {
+      event.preventDefault()
+      sendPasswordResetEmail(auth, email).then(() => {
         setSuccess(true)  
         setResult(`We sent a recovery email to ${email}`)
       }).catch((error) => {
-        const errorMessage = verifyError(error.code);
+        const message: string = error.code
+        const errorMessage = verifyError(message);
         setResult(errorMessage)
       })
     }
@@ -47,7 +48,7 @@ const ForgotPassword = () => {
                      {result && <span className={styles.spanResult}>{result}</span>}
 
                </div>
-               {success && <p>Didn't receive the email? <br></br><button className={styles.resend} onClick={(e) => handleForgetPassword(e, email)}>Click here to resend it</button></p>}
+               {success && <p>Didn't receive the email? <br></br><button className={styles.resend} onSubmit={(e) => handleForgetPassword(e, email)}>Click here to resend it</button></p>}
                    <button onClick={(e) => handleForgetPassword(e, email)} className={styles.resetButton}>
                       Send email
                     </button>

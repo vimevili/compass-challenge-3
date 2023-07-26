@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import useFetch from '../../hooks/useFetch';
 import {useState} from 'react'
 import styles from './Explore.module.css'
@@ -32,42 +31,44 @@ const Explore = () => {
   const {data} = useFetch();
   const navigate = useNavigate()
 
-  function getComparator(selectedSortBy: string) {
+  function getComparator(selectedSortBy: string) {   
+
     switch (selectedSortBy) {
       case 'Popularity':
-        return (a: number, b: number) => +b.rating - +a.rating;
+        return (a: Product, b: Product) => +b.rating - +a.rating;
       case 'Newest':
-        return (a: Date | string, b: Date | string) => new Date(b.created_at) - new Date(a.created_at);
+        return (a: Product, b: Product) => new Date(b.created_at).getDate() - new Date(a.created_at).getDate();
       case 'Oldest':
-        return (a: Date | string, b: Date | string) => new Date(a.created_at) - new Date(b.created_at);
+        return (a: Product, b: Product) => new Date(a.created_at).getDate() - new Date(b.created_at).getDate();
       case 'High Price':
-        return (a: number, b: number) => +(b.price.substring(1)) - +(a.price.substring(1));
+        return (a: Product, b: Product) => +(b.price.substring(1)) - +(a.price.substring(1));
       case 'Low Price':
-        return (a: number, b: number) => +(a.price.substring(1)) - +(b.price.substring(1));
+        return (a: Product, b: Product) => +(a.price.substring(1)) - +(b.price.substring(1));
       case 'Review':
-        return (a: number, b: number) => b.reviews.length - a.reviews.length;
+        return (a: Product, b: Product) => b.reviews.length - a.reviews.length;
       default:
         return null;
     }
   }
-  const comparator = getComparator(selectedSortBy)
-  
-  // Apply filters
-  const applyFiltersAndSort = () => {
 
-    let dataFiltered = [...data];
-    if (selectedCategory) {
+  // Apply filters
+  const applyFiltersAndSort = (): void =>  {
+
+    let dataFiltered
+    if(data) dataFiltered = [...data];
+
+    if (selectedCategory && dataFiltered) {
       dataFiltered = dataFiltered.filter((product) => product.category === selectedCategory);
     } 
     
-    if (!selectedCategory && selectedSortBy) {
+    if (!selectedCategory && selectedSortBy && dataFiltered) {
       const comparator = getComparator(selectedSortBy);
-      dataFiltered = dataFiltered.sort(comparator);
+      if(comparator) dataFiltered = dataFiltered.sort(comparator);
     }
 
-    if (selectedCategory && selectedSortBy) {
+    if (selectedCategory && selectedSortBy && dataFiltered) {
       const comparator = getComparator(selectedSortBy);
-      dataFiltered = dataFiltered.sort(comparator);
+      if(comparator) dataFiltered = dataFiltered.sort(comparator);
     }
     setFilteredProducts(dataFiltered);
   }
@@ -101,9 +102,8 @@ const Explore = () => {
             applyFiltersAndSort={applyFiltersAndSort}
             setLoading={setLoading}/>
       </div>
-      {!filteredProducts ? 
-        <AllProducts products={data} loading={loading}/> 
-        : <AllProducts products={filteredProducts} loading={loading}/>}
+      {!filteredProducts && data && <AllProducts products={data} loading={loading}/>}
+      { filteredProducts && <AllProducts products={filteredProducts} loading={loading}/>}
 
 
       </motion.div>

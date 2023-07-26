@@ -8,8 +8,7 @@ import {  motion  } from 'framer-motion';
 
 const Home = () => {  
   const {user} = useContext(UserContext)
-  
-  const socialUser: string = user && user.displayName
+  const socialUser: string = user && typeof user.displayName === 'string' ? user.displayName : '';
   const userName: string = user && socialUser ? socialUser : 'user'
 
   return (

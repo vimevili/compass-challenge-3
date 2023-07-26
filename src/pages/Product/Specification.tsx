@@ -4,8 +4,9 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch'
 import returnIcon from '/src/assets/images/return.svg'
 import cartIcon from '/src/assets/images/shopping-cart.svg'
-import { CartContext } from '../../contexts/CartContext';
+import { CartContext, CartContextData } from '../../contexts/CartContext';
 import Loading from '../../components/Loading/Loading';
+
 
 const Specification = () => {
   const [overChecked, setOverChecked] = useState<boolean>(false)
@@ -22,12 +23,14 @@ const Specification = () => {
   const {data, loading} = useFetch()
   const navigate = useNavigate()
 
-  const selectedProduct = data && data.find(product => product.id == id)
+  const selectedProduct = data && data.find(product => product.id === id)
   const name = selectedProduct && selectedProduct.name
   const price = selectedProduct &&  selectedProduct.price.substring(1, selectedProduct.price.length)
   const description = selectedProduct &&  selectedProduct.description 
 
-  const {handleAddProduct} = useContext(CartContext)
+  const cartData = useContext(CartContext);
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const {handleAddProduct}: CartContextData = cartData 
 
   return (
     <div className={styles.body}>
@@ -46,7 +49,7 @@ const Specification = () => {
             <h1 className={styles.title}>{name}</h1>
             <ul className={styles.linksContainer}>
               <li className={styles.linkContainer}>
-                <input type='radio' onClick={()=> navigate(`/products/${id}/overview`)} className={styles.links} name='link' id='overview' checked={overChecked} onChange={handleRadioChange}/>
+                <input type='radio' onClick={()=> navigate(`/products/${id!}/overview`)} className={styles.links} name='link' id='overview' checked={overChecked} onChange={handleRadioChange}/>
                 <label htmlFor="overview">Overview</label>
                 <img src="/src/assets/images/visited-link.svg" alt="" className={overviewBarOn}/>
               </li>
@@ -66,7 +69,7 @@ const Specification = () => {
         
         <div style={{padding: '0 1.5rem 1.5rem 1.5rem'}}>
           <Link to='/cart'>
-              <button onClick={() => handleAddProduct(selectedProduct)} className={styles.button}>Add To Cart</button>
+              <button onClick={() => handleAddProduct(selectedProduct!)} className={styles.button}>Add To Cart</button>
           </Link>
         </div> </>} 
       </div>

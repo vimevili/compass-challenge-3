@@ -1,11 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { ChangeEvent } from 'react';
 import styles from './SortBy.module.css'
 
-const SortBy = ({selectedSortBy, setSelectedSortBy}) => {
+type Props = {selectedSortBy: string, setSelectedSortBy: (a: string) => void}
+const SortBy = ({selectedSortBy, setSelectedSortBy}: Props) => {
 
   const filters = ['Popularity', 'Newest', 'Oldest', 'High Price', 'Low Price', 'Review']
   
-  const handleRadioChange = ({target}) => {
+  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const {target} = event
     setSelectedSortBy(target.value)
   };
 

@@ -7,10 +7,19 @@ import SortBy from './SortBy'
 import 'react-spring-bottom-sheet/dist/style.css'
 import filterIcon from "react-useanimations/lib/settings2";
 
-export default function FilterButton({ setLoading, applyFiltersAndSort, selectedCategory, setSelectedCategory, selectedSortBy, setSelectedSortBy}) {
+type Props = {
+  setLoading: (a: boolean) => void, 
+  applyFiltersAndSort: () => void,
+  selectedCategory: string,
+  setSelectedCategory: (a: string) => void,
+  selectedSortBy: string,
+  setSelectedSortBy: (a: string) => void
+}
+
+export default function FilterButton({ setLoading, applyFiltersAndSort, selectedCategory, setSelectedCategory, selectedSortBy, setSelectedSortBy}: Props) {
   
   const [open, setOpen] = useState(false)
-  const sheetRef = useRef<BottomSheetRef>()
+  const sheetRef = useRef<BottomSheetRef>(null)
 
   function apply() {
     applyFiltersAndSort();
@@ -63,7 +72,6 @@ export default function FilterButton({ setLoading, applyFiltersAndSort, selected
                   <CategoryFilters 
                   selectedCategory = {selectedCategory}
                   setSelectedCategory = {setSelectedCategory}
-                  clearFilters={clearFilters}
                   />
                 </div>
                 <div>
@@ -71,7 +79,6 @@ export default function FilterButton({ setLoading, applyFiltersAndSort, selected
                   <SortBy 
                   selectedSortBy={selectedSortBy}
                   setSelectedSortBy={setSelectedSortBy}
-                  clearFilters={clearFilters}
                   />
                 </div>
                 <button onClick={apply} className={styles.applyButton}>Apply Filter</button>

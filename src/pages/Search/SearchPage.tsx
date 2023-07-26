@@ -6,12 +6,13 @@ import {Link} from 'react-router-dom'
 import { motion} from 'framer-motion'
 import SearchInput from './components/SearchInput';
 import SearchHeader from './components/SearchHeader';
+import { Product } from '../../contexts/CartContext';
 
 const SearchPage = () => {
-  const [search, setSearch] = useState('');
-  const { data, loading, error} = useFetch();
+  const [search, setSearch] = useState<string>('');
+  const {data} = useFetch();
 
-const filteredProducts:[Product] = data && search.length > 0 ? data.filter((product) =>
+const filteredProducts: Product[] = data && search.length > 0 ? data.filter((product) =>
 product.name.toLowerCase().includes(search.toLowerCase())) : [];
 
 const popularProducts = [

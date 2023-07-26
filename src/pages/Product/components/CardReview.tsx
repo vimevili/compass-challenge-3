@@ -1,7 +1,9 @@
 import styles from './CardReview.module.css'
 import Stars from './Stars'
 
-const CardReview = ({userName, review, rating}) => {
+type CardProps =  {userName: string, review: string, rating: number}
+
+const CardReview = ({userName, review, rating}: CardProps) => {
   return (
     <div>
       <div className={styles.reviewContainer}>

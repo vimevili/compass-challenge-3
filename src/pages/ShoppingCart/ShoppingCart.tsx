@@ -1,18 +1,15 @@
 import styles from './ShoppingCart.module.css'
 import ShoppingCard from './components/ShoppingCard';
 import { useContext } from 'react';
-import { CartContext } from '../../contexts/CartContext';
+import { CartContext, CartContextData } from '../../contexts/CartContext';
 import {motion} from 'framer-motion'
 import CartHeader from './components/CartHeader';
 
 const ShoppingCart = () => {
 
-  const {cartProducts,
-    setCartProducts,
-    handleAddProduct, 
-    handleRemoveFromCart, 
-    removeOneProduct,
-    totalPrice, clearCart} = useContext(CartContext)
+  const cartData: CartContextData = useContext(CartContext)
+  const {cartProducts, 
+    totalPrice} = cartData
 
   return (
     <motion.div className={styles.body}

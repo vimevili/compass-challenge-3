@@ -55,7 +55,7 @@ const Overview = () => {
                   <img src="/src/assets/images/visited-link.svg" alt="" className={overviewBarOn}/>
               </li>
             <li className={styles.linkContainer}>
-              <input type='radio' onClick={()=> navigate(`/products/${id}/features`)} className={styles.links} name='link' id='features' checked={featureChecked} onChange={handleRadioChange}/>
+              <input type='radio' onClick={()=> navigate(`/products/${id!}/features`)} className={styles.links} name='link' id='features' checked={featureChecked} onChange={handleRadioChange}/>
               <label htmlFor="features">Features</label>
               <img src="/src/assets/images/visited-link.svg" alt="" className={featureBarOn}/>
             </li>
@@ -75,7 +75,7 @@ const Overview = () => {
       <AnotherProductCarousel />
       <div style={{padding: '0 1.5rem 1.5rem 1.5rem'}}>
         <Link to='/cart'>
-          <button onClick={() => handleAddProduct(selectedProduct)} className={styles.button}>Add To Cart</button>
+          <button onClick={() => handleAddProduct(selectedProduct!)} className={styles.button}>Add To Cart</button>
         </Link>
       </div>
       </>}

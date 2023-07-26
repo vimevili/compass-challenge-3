@@ -28,8 +28,8 @@ const SignUp = () => {
           <Form type={'Up'} />
 
           <ul className={styles.socialContainer}>
-            <li><button onClick={signInWithFacebook} className={styles.socialButton}><img src="/src/assets/images/facebook.svg" alt="" /></button></li>
-            <li><button onClick={signInWithGoogle} className={styles.socialButton}><img src="/src/assets/images/google.svg" className={styles.google} alt="" /></button></li> 
+            <li><button onClick={() => void signInWithFacebook} className={styles.socialButton}><img src="/src/assets/images/facebook.svg" alt="" /></button></li>
+            <li><button onClick={() => void signInWithGoogle} className={styles.socialButton}><img src="/src/assets/images/google.svg" className={styles.google} alt="" /></button></li> 
           </ul>
           <p style={{paddingTop: '1.5rem'}}>If you have an account, <Link to='/' style={{color: '#0ACF83'}}>Sing In here</Link></p>
     </div>

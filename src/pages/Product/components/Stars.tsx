@@ -1,6 +1,6 @@
 import Rating from '@mui/material/Rating';
-
-const Stars = ({rating}) => {
+type Stars = { rating: number}
+const Stars = ({rating}: Stars) => {
 
   return (
    <>

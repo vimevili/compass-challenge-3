@@ -1,6 +1,7 @@
 import styles from './ShopCard.module.css'
 
-const Card = ({title, filter}) => {
+type Props = {title: string, filter: string}
+const Card = ({title, filter}: Props) => {
   
   return (
     <div className={styles.container}>

@@ -1,8 +1,9 @@
 import styles from './ShoppingCard.module.css'
 import { useContext } from 'react';
-import { CartContext } from '../../../contexts/CartContext';
+import { CartContext, cartProduct } from '../../../contexts/CartContext';
 
-const ShoppingCard = ({product, name, price}) => {
+type Props = {product: cartProduct, name: string, price: string}
+const ShoppingCard = ({product, name, price}: Props) => {
 
   const productsData = useContext(CartContext) 
   const {handleAddProduct, 

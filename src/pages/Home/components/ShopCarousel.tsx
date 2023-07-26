@@ -1,10 +1,10 @@
 import {motion} from 'framer-motion'
 import ShopCard from './ShopCard'
 import styles from './ShopCarousel.module.css'
-import {Link, useParams} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
-const ShopCarousel = ({filter}) => {
-  const { id } = useParams();
+type Props = {filter: string}
+const ShopCarousel = ({filter}: Props) => {
 
   const headphoneSample = [
     {name:"Bluetooth Sports Headphones", id:3},

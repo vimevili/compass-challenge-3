@@ -1,8 +1,8 @@
 import styles from './Filters.module.css'
+type Props = {handleFilter: (a: string) => void}
+const Filters = ({handleFilter}: Props ) => {
 
-const Filters = ({handleFilter}) => {
-
-  function handleClick(value) {
+  function handleClick(value: string) {
     handleFilter(value)
   }
 

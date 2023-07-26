@@ -19,7 +19,7 @@ function useFetch() {
       date: Date;
       id: number;
     }[];
-    id: number;
+    id: string;
   }
   
   useEffect(() => {

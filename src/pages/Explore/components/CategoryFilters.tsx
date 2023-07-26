@@ -1,14 +1,13 @@
+import { ChangeEvent } from 'react';
 import styles from './CategoryFilters.module.css'
 
-const CategoryFilters = ({clearFilters, selectedCategory, setSelectedCategory}) => {
-  
-  const handleOptionChange = ({target}) => {
-    setSelectedCategory(target.value)
-  };
+type Props = {selectedCategory: string, setSelectedCategory: (a: string) => void}
 
-  const handleClearFilters = () => {
-    setSelectedCategory(null)
-    clearFilters()
+const CategoryFilters = ({selectedCategory, setSelectedCategory}: Props) => {
+  
+  const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const {target} = event
+    setSelectedCategory(target.value)
   };
 
   return (
@@ -19,8 +18,7 @@ const CategoryFilters = ({clearFilters, selectedCategory, setSelectedCategory}) 
           id="Headphones" 
           name="category-filter" 
           className={styles.radioInput} 
-          onChange={handleOptionChange}
-          onClick={() => setSelectedCategory()}/>
+          onChange={handleOptionChange}/>
         <label htmlFor="Headphones" className={styles.categoryLabel}>Headphones</label>
 
         <input type="radio" 
@@ -29,8 +27,7 @@ const CategoryFilters = ({clearFilters, selectedCategory, setSelectedCategory}) 
           id="Headsets" 
           name="category-filter" 
           className={styles.radioInput} 
-          onChange={handleOptionChange}
-          onClick={() => setSelectedCategory()}/>
+          onChange={handleOptionChange}/>
         <label htmlFor="Headsets" className={styles.categoryLabel}>Headsets</label>
     </div>
   )

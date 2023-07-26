@@ -1,6 +1,7 @@
 import styles from './ProductCard.module.css'
 
-const ProductCard = ({name, reviews, category, price, rating}) => {
+type Props = {name: string, reviews: number, category: string, price: string, rating: number}
+const ProductCard = ({name, reviews, category, price, rating}: Props) => {
   
   return (
     <div className={styles.container}>

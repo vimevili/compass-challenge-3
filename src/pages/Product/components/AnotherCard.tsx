@@ -1,7 +1,8 @@
 import styles from './AnotherCard.module.css'
 
-const AnotherCard = ({title, price, src}) => {
-  
+type CardProps =  {title: string, price: number, src: string}
+
+const AnotherCard = ({title, price, src}: CardProps) => {
   return (
     <div className={styles.container}>
           <img src={src} alt="" />

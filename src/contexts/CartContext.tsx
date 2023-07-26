@@ -1,33 +1,48 @@
-import { useState, createContext } from 'react';
+import { useState, ReactNode, createContext } from 'react';
 import Swal from 'sweetalert2';
 
-export const CartContext = createContext();
-
-export const CartProvider = ({ children }) => {
-  interface selectedProduct {
-    rating: number;
-    price: string;
-    name: string;
+export interface Product {
+  rating: number;
+  price: string;
+  name: string;
+  description: string;
+  category: string;
+  created_at: Date;
+  reviews: {
+    user: string;
     description: string;
-    category: string;
-    created_at: Date;
-    reviews: {
-      user: string;
-      description: string;
-      rating: number;
-      date: Date;
-      id: number;
-    }[];
+    rating: number;
+    date: Date;
     id: number;
-  }
+  }[];
+  id: string;
+}
 
-  interface cartProduct extends selectedProduct {
-    quantity: number;
-  }
+export interface cartProduct extends Product {
+  quantity: number;
+}
+
+export interface CartContextData {
+  cartProducts: cartProduct[],
+  addOneProduct: (a: string) => void,
+  clearCart: (a: cartProduct[]) => Promise<void> | null;
+  addToCart: (a: Product) => void;
+  handleAddProduct: (a: Product) =>  void;
+  confirmRemoval: () =>  Promise<boolean>,
+  areYouSure:(a: cartProduct) =>  void,
+  removeOneProduct:(a: string) => void,
+  handleRemoveFromCart: (a: Product) => void,
+  totalPrice: number
+}
+
+export const CartContext = createContext<CartContextData>({} as CartContextData);
+
+type Props = {children: ReactNode }
+export const CartProvider = ({ children }: Props) => {
 
   const [cartProducts, setCartProducts] = useState<cartProduct[]>([]);
 
-  function addOneProduct(productId: number) {
+  function addOneProduct(productId: string): void {
     const updatedCart: cartProduct[] = cartProducts.map((product) => {
       if (product.id === productId) {
         return { ...product, quantity: product.quantity + 1 };
@@ -37,9 +52,9 @@ export const CartProvider = ({ children }) => {
     setCartProducts(updatedCart);
   }
 
-  function clearCart(cartProducts) {
+  async function clearCart(cartProducts: cartProduct[]): Promise<void> {
     if (cartProducts) {
-      return Swal.fire({
+      await Swal.fire({
         customClass : {
           confirmButton: 'swal2-button'
         },
@@ -53,14 +68,14 @@ export const CartProvider = ({ children }) => {
           setCartProducts([]);
         }
       });
-  } return null
   }
-  function addToCart(selectedProduct: selectedProduct) {
+  }
+  function addToCart(selectedProduct: Product) {
     const updatedProduct: cartProduct = { ...selectedProduct, quantity: 1 };
     setCartProducts([...cartProducts, updatedProduct]);
   }
 
-  const handleAddProduct = (selectedProduct: selectedProduct) => {
+  const handleAddProduct = (selectedProduct: Product): void => {
     const productExists = cartProducts.some((product) => product.id === selectedProduct.id);
     productExists ? addOneProduct(selectedProduct.id) : addToCart(selectedProduct);
   };
@@ -80,16 +95,16 @@ export const CartProvider = ({ children }) => {
     });
   }
 
-  function areYouSure(productId: number, productToRemove: cartProduct) {
-    confirmRemoval(productId, productToRemove)
-      .then((isConfirmed) => {
+  function areYouSure(productToRemove: cartProduct) {
+    confirmRemoval()
+      .then(async (isConfirmed) => {
         if (isConfirmed) {
-          Swal.fire('Removed!', 'The product was successfully removed.', 'success');
+         await Swal.fire('Removed!', 'The product was successfully removed.', 'success');
           const updatedCartProducts: cartProduct[] = cartProducts.filter(
           (product) => product.id !== productToRemove.id
             );
             setCartProducts(updatedCartProducts);
-            Swal.fire('Removed!', 'The product was successfully removed.', 'success');
+           await Swal.fire('Removed!', 'The product was successfully removed.', 'success');
           }
         })
       .catch((error) => {
@@ -97,7 +112,7 @@ export const CartProvider = ({ children }) => {
       });
   }
 
-  function removeOneProduct(productId: number) {
+  function removeOneProduct(productId: string) {
     const updatedCart: cartProduct[] = cartProducts.map((product) => {
       if (product.id === productId && product.quantity > 0) {
         return { ...product, quantity: product.quantity - 1 };
@@ -114,15 +129,15 @@ export const CartProvider = ({ children }) => {
     }
   }
 
-  const handleRemoveFromCart = (selectedProduct: selectedProduct) => {
+  const handleRemoveFromCart = (selectedProduct: Product) => {
     confirmRemoval()
-      .then((isConfirmed) => {
+      .then(async (isConfirmed) => {
         if (isConfirmed) {
           const updatedCartProducts: cartProduct[] = cartProducts.filter(
             (product) => product.id !== selectedProduct.id
           );
           setCartProducts(updatedCartProducts);
-          Swal.fire('Removed!', 'The product was successfully removed.', 'success');
+          await Swal.fire('Removed!', 'The product was successfully removed.', 'success');
         }
       })
       .catch((error) => {
@@ -139,17 +154,20 @@ export const CartProvider = ({ children }) => {
     return count;
   }
 
-  const totalPrice = calculateTotalPrice();
+  const totalPrice: number = calculateTotalPrice();
 
   return (
     <CartContext.Provider
       value={{
         cartProducts,
+        addOneProduct,
         clearCart,
-        setCartProducts,
+        addToCart,
         handleAddProduct,
-        handleRemoveFromCart,
+        confirmRemoval,
+        areYouSure,
         removeOneProduct,
+        handleRemoveFromCart,
         totalPrice
       }}
     >

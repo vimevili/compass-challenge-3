@@ -1,18 +1,19 @@
 import { auth, googleProvider, facebookProvider } from '../services/firebase';
-import { signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword  } from 'firebase/auth';
-import { useState, FormEvent, createContext } from 'react';
+import { User, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword  } from 'firebase/auth';
+import {ReactNode, MouseEventHandler, useState, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import verifyError from '../contexts/verifyError'
 
 interface UserContextData {
+  user: User | undefined,
   email: string;
   password: string;
   loadingUser: boolean;
-  signIn: (e: FormEvent<HTMLFormElement>) => void;
-  signUp: (e: FormEvent<HTMLFormElement>) => void;
+  signIn: (e: MouseEventHandler<HTMLButtonElement>) => void;
+  signUp: (e: MouseEventHandler<HTMLButtonElement>) => void;
   logOut: () => void;
-  signInWithGoogle: (e: FormEvent<HTMLFormElement>) => void;
-  signInWithFacebook: (e: FormEvent<HTMLFormElement>) => void;
+  signInWithGoogle: (e: MouseEventHandler<HTMLButtonElement>) => void;
+  signInWithFacebook: (e: MouseEventHandler<HTMLButtonElement>) => void;
   validateEmail: (email: string) => void;
   validatePassword: (password: string) => void;
   error: string;
@@ -22,11 +23,11 @@ interface UserContextData {
 }
 
 export const UserContext = createContext<UserContextData>({} as UserContextData);
-
-export const UserProvider: React.FC = ({ children }) => {
+type Props = {children: ReactNode }
+export const UserProvider: React.FC<Props> = ({ children }) => {
 
 //States e consts
-  const [user, setUser] = useState<object>()
+  const [user, setUser] = useState<User>()
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [loadingUser, setLoadingUser] = useState<boolean>(false)
@@ -45,21 +46,24 @@ export const UserProvider: React.FC = ({ children }) => {
 }
 
 // SignIn functions
-  const signIn = (e: FormEvent<HTMLFormElement>) => {
+  const signIn = (e: MouseEventHandler<HTMLButtonElement>) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        setUser(userCredential.user)
+      .then(({user}) => {
+        const userData: User = user
+        setUser(userData)
         setError('')
         setLoadingUser(true);
         setTimeout(() => {
-          localStorage.setItem('userLogged', userCredential.accessToken)
+        const id: string = user && user.email!
+          localStorage.setItem('userLogged', id)
           setLoadingUser(false);
           navigate('/home');
         }, 1500);
       })
-      .catch((error) => {
-        const errorMessage = verifyError(error.code);
+      .catch(({code}) => {
+        const message: string = code
+        const errorMessage = verifyError(message);
         setError(errorMessage)
       });
   };
@@ -81,21 +85,22 @@ export const UserProvider: React.FC = ({ children }) => {
   }
   
 // SignUp functions 
-  const signUp = (e: FormEvent<HTMLFormElement>) => {
+  const signUp = (e: MouseEventHandler<HTMLButtonElement>) => {
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-      setUser(userCredential.user)
+    createUserWithEmailAndPassword(auth, email, password).then(({user}) => {
+      setUser(user)
       setError('')
       setLoadingUser(true)
 
       setTimeout(() => {
-        localStorage.setItem('userLogged', user.accessToken)
+        localStorage.setItem('userLogged', user.email!)
         setLoadingUser(false);
         navigate('/home');
       }, 1500);
     })
-    .catch((error) => {
-      const errorMessage = verifyError(error.code);
+    .catch(({code}) => {
+      const message: string = code
+      const errorMessage = verifyError(message);
       setError(errorMessage)
     });
   };
@@ -103,7 +108,7 @@ export const UserProvider: React.FC = ({ children }) => {
 // SignOut functions
   const logOut = () => {
     signOut(auth).then(() => {
-      setUser(null)
+      setUser(undefined)
       setError('')
       setLoadingUser(true)
       // Timeout for loading component
@@ -112,52 +117,56 @@ export const UserProvider: React.FC = ({ children }) => {
         setLoadingUser(false);
         navigate('/');
       }, 1500);
-    }).catch((error) => {
-      const errorMessage = verifyError(error.code);
-      setError(errorMessage)
+    }).catch(({code}) => {
+      const message: string = code
+        const errorMessage = verifyError(message);
+        setError(errorMessage)
     });
   }
 
 // Google authentication
-  function signInWithGoogle(e: FormEvent<HTMLFormElement>){
+  function signInWithGoogle(e: MouseEventHandler<HTMLButtonElement>){
     e.preventDefault();
-    signInWithPopup(auth, googleProvider).then((userCredential)=>{
-      setUser(userCredential.user)
+    signInWithPopup(auth, googleProvider).then(({user})=>{
+      setUser(user)
       setError('')
       setLoadingUser(true);
 
       setTimeout(() => {
-        localStorage.setItem('userLogged', userCredential.accessToken)
+        localStorage.setItem('userLogged', user.email!)
         setLoadingUser(false);
         navigate('/home');
       }, 1500);
-    }).catch((error)=> {
-      const errorMessage = verifyError(error.code);
+    }).catch(({code})=> {
+      const message: string = code
+      const errorMessage = verifyError(message);
       setError(errorMessage)
     })
   }
 // Facebook authentication 
-  const signInWithFacebook=(e: FormEvent<HTMLFormElement>)=>{
+  const signInWithFacebook=(e: MouseEventHandler<HTMLButtonElement>)=>{
     e.preventDefault()
-    signInWithPopup(auth, facebookProvider).then((result)=>{
-      setUser(result.user);
+    signInWithPopup(auth, facebookProvider).then(({user})=>{
+      setUser(user);
       setError('')
       setLoadingUser(true)
 
       setTimeout(() => {
-        localStorage.setItem('userLogged', user.accessToken)
+        localStorage.setItem('userLogged', user.email!)
         setLoadingUser(false);
         navigate('/home');
       }, 1500);
-    }).catch((error)=>{
-      const errorMessage = verifyError(error.code);
-        setError(errorMessage)
+    }).catch(({code})=>{
+      const message: string = code
+      const errorMessage = verifyError(message);
+      setError(errorMessage)
     })
   }
 
   return (
     <UserContext.Provider
       value={{
+        user,
         email,
         password,
         loadingUser,
