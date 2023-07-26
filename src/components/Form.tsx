@@ -1,4 +1,4 @@
-import {MouseEventHandler, useContext } from 'react'
+import {FormEvent, useContext } from 'react'
 import styles from './Form.module.css';
 import { UserContext } from "../contexts/UserContext";
 import {Link} from 'react-router-dom'
@@ -16,7 +16,7 @@ const Form = ({type}: Props) => {
         passwordError,
         emailError } = useContext(UserContext)  
     
-  function handleSubmit(e: MouseEventHandler<HTMLButtonElement>): void {
+  function handleSubmit(e: FormEvent<HTMLButtonElement>): void {
     if (type === 'In') {
       signIn(e)
     }

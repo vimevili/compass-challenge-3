@@ -34,7 +34,7 @@ const Specification = () => {
 
   return (
     <div className={styles.body}>
-      {loading && <Loading />}
+      {loading && <Loading signout={false}/>}
       {!loading && 
       <>
       <div>

@@ -16,7 +16,7 @@ const SignUp = () => {
   
   return (
     <>
-    {loadingUser && <Loading />}
+    {loadingUser && <Loading signout={false}/>}
     {!emailError && !passwordError && error && Swal.fire({
       title: 'Oops...',
       text: error

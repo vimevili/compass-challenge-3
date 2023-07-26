@@ -36,7 +36,7 @@ const Overview = () => {
 
   return ( 
     <div className={styles.body}>
-      {loading && <Loading />}
+      {loading && <Loading signout={false}/>}
       {!loading && 
       <>
       <div className={styles.headerIcons}>

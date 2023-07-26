@@ -23,8 +23,8 @@ const AllProducts = ({loading, products}: Props) => {
 
   return (
     <div className={styles.body}>
-        {pageLoading && <Loading />}
-        {loading  && <Loading />}
+        {pageLoading && <Loading signout={false}/>}
+        {loading  && <Loading signout={false}/>}
         {error && <p>{error}</p>}
         {products && !loading && products.map((product, index) => 
               <li key={index}>
