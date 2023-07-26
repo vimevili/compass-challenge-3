@@ -2,7 +2,7 @@ import styles from './Loading.module.css'
 import loadingIcon from "react-useanimations/lib/loading";
 import UseAnimations from "react-useanimations";
 
-const Loading = (signout?) => {
+const Loading = (signout?: boolean) => {
 
   return (
     <div className={signout ? styles.outBody : styles.body}>

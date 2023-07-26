@@ -123,7 +123,7 @@ export const CartProvider = ({ children }: Props) => {
     const productToRemove = updatedCart.find((product) => product.id === productId);
 
     if (productToRemove && productToRemove.quantity === 0) {
-      areYouSure(productId, productToRemove);
+      areYouSure(productToRemove);
     } else {
       setCartProducts(updatedCart);
     }

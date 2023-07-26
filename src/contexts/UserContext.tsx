@@ -1,6 +1,6 @@
 import { auth, googleProvider, facebookProvider } from '../services/firebase';
 import { User, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword  } from 'firebase/auth';
-import {ReactNode, MouseEventHandler, useState, createContext } from 'react';
+import {ReactNode, FormEvent, useState, createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import verifyError from '../contexts/verifyError'
 
@@ -9,11 +9,11 @@ interface UserContextData {
   email: string;
   password: string;
   loadingUser: boolean;
-  signIn: (e: MouseEventHandler<HTMLButtonElement>) => void;
-  signUp: (e: MouseEventHandler<HTMLButtonElement>) => void;
+  signIn: (e: FormEvent<HTMLButtonElement>) => void;
+  signUp: (e: FormEvent<HTMLButtonElement>) => void;
   logOut: () => void;
-  signInWithGoogle: (e: MouseEventHandler<HTMLButtonElement>) => void;
-  signInWithFacebook: (e: MouseEventHandler<HTMLButtonElement>) => void;
+  signInWithGoogle: (e: FormEvent<HTMLButtonElement>) => void;
+  signInWithFacebook: (e: FormEvent<HTMLButtonElement>) => void;
   validateEmail: (email: string) => void;
   validatePassword: (password: string) => void;
   error: string;
@@ -46,7 +46,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
 }
 
 // SignIn functions
-  const signIn = (e: MouseEventHandler<HTMLButtonElement>) => {
+  const signIn = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(({user}) => {
@@ -85,7 +85,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
   }
   
 // SignUp functions 
-  const signUp = (e: MouseEventHandler<HTMLButtonElement>) => {
+  const signUp = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password).then(({user}) => {
       setUser(user)
@@ -125,7 +125,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
   }
 
 // Google authentication
-  function signInWithGoogle(e: MouseEventHandler<HTMLButtonElement>){
+  function signInWithGoogle(e: FormEvent<HTMLButtonElement>){
     e.preventDefault();
     signInWithPopup(auth, googleProvider).then(({user})=>{
       setUser(user)
@@ -144,7 +144,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
     })
   }
 // Facebook authentication 
-  const signInWithFacebook=(e: MouseEventHandler<HTMLButtonElement>)=>{
+  const signInWithFacebook=(e: FormEvent<HTMLButtonElement>)=>{
     e.preventDefault()
     signInWithPopup(auth, facebookProvider).then(({user})=>{
       setUser(user);
