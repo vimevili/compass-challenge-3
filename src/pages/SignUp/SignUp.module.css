@@ -45,6 +45,14 @@
     border-radius: 0.5875rem;
     background: #FFF;
 }
+
+.button {
+    background: none;
+    border: none;
+    color: #0ACF83;
+    text-decoration: underline;
+}
+
 .socialButton {
     background: none;
     border: none;

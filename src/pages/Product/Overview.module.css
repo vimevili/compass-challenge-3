@@ -70,6 +70,15 @@ display: none;
     color: var(--colors-white, #FFF);
 }
 
+.buttonClicked {
+    background: #07945e;
+    padding: 1.25rem 0.625rem;
+    width: 100%;
+    border: none;
+    border-radius: 0.625rem;
+    color: #FFF;
+}
+
 .reviewsContainer {
     display: flex;
     flex-direction: column;

@@ -48,18 +48,37 @@
     color: rgb(228, 65, 65);
 }
 
-.spanPassword {
+.spanPasswordSignIn {
+    display: inline-block !important;
     position: absolute;
-    top: 36rem; 
+    top: 34.5rem; 
     left: 2rem;
     color:white;
     font-size: .75rem;
 }
 
-.spanEmail {
+.spanEmailSignIn {
+    display: inline-block !important;
     position: absolute;
-    top: 31.1rem; 
-    left: rem;
+    top: 29.5rem; 
+    color:white;
+    font-size: .75rem;
+    border: none;
+}
+
+.spanPasswordSignUp {
+    display: inline-block !important;
+    position: absolute;
+    top: 33.5rem; 
+    left: 2rem;
+    color:white;
+    font-size: .75rem;
+}
+
+.spanEmailSignUp {
+    display: inline-block !important;
+    position: absolute;
+    top: 28.6rem; 
     color:white;
     font-size: .75rem;
     border: none;

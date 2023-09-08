@@ -9,7 +9,7 @@ const ShoppingCart = () => {
 
   const cartData: CartContextData = useContext(CartContext)
   const {cartProducts, 
-    totalPrice} = cartData
+    totalPrice, totalItems} = cartData
 
   return (
     <motion.div className={styles.body}
@@ -36,7 +36,7 @@ const ShoppingCart = () => {
       
       <div>
         <div className={styles.totalContainer}>
-          <p className={styles.total}>Total {cartProducts && cartProducts.length} {cartProducts && cartProducts.length > 1 ? 'items' : 'item'}</p>
+          <p className={styles.total}>Total {totalItems && totalItems} {cartProducts && cartProducts.length > 1 ? 'items' : 'item'}</p>
           <h2 className={styles.totalPrice}>USD {totalPrice && totalPrice.toFixed(2)}</h2>
         </div>
         <div className={styles.buttonContainer}>

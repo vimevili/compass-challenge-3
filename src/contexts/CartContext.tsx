@@ -32,7 +32,8 @@ export interface CartContextData {
   areYouSure:(a: cartProduct) =>  void,
   removeOneProduct:(a: string) => void,
   handleRemoveFromCart: (a: Product) => void,
-  totalPrice: number
+  totalPrice: number,
+  totalItems: number
 }
 
 export const CartContext = createContext<CartContextData>({} as CartContextData);
@@ -41,6 +42,11 @@ type Props = {children: ReactNode }
 export const CartProvider = ({ children }: Props) => {
 
   const [cartProducts, setCartProducts] = useState<cartProduct[]>([]);
+
+  const totalItems: number = cartProducts.reduce((total, product) => {
+    return total + product.quantity
+  }, 0)
+
 
   function addOneProduct(productId: string): void {
     const updatedCart: cartProduct[] = cartProducts.map((product) => {
@@ -168,7 +174,8 @@ export const CartProvider = ({ children }: Props) => {
         areYouSure,
         removeOneProduct,
         handleRemoveFromCart,
-        totalPrice
+        totalPrice,
+        totalItems
       }}
     >
       {children}

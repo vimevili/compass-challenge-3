@@ -16,17 +16,20 @@ const Form = ({type}: Props) => {
         passwordError,
         emailError } = useContext(UserContext)  
     
-  function handleSubmit(e: FormEvent<HTMLButtonElement>): void {
-    if (type === 'In') {
-      signIn(e)
-    }
-    signUp(e)
+  function handleSubmit(e: FormEvent<HTMLFormElement>): void {
+    e.preventDefault()
+    type === 'In' ? signIn(e) : signUp(e)
   }      
-  
+  console.log(passwordError);
+  console.log(emailError);
+  console.log(error);
+
+
   return (
 
-    <form>
+    <form onSubmit={handleSubmit}>
              <div className={styles.inputs}>
+
              <div className={!emailError ? styles.flex : styles.errorFlex}>
                <img src="/src/assets/images/email.svg" id='img-mail' alt="" />
                <input
@@ -38,7 +41,10 @@ const Form = ({type}: Props) => {
                  className={!emailError ? styles.input : styles.errorInput}
                />
              </div>
-             <span className={styles.spanEmail}>{error.includes('email') && emailError}</span>
+
+             <span style={{display: 'none'}} className={emailError && type === 'In' ? styles.spanEmailSignIn : styles.spanEmailSignUp}>
+              {error.includes('email') && emailError}
+             </span>
 
              <div className={!passwordError ? styles.flex : styles.errorFlex}>
                <img src="/src/assets/images/lock.svg" id='img-lock' alt="" />
@@ -51,9 +57,14 @@ const Form = ({type}: Props) => {
                  className={!passwordError ? styles.input : styles.errorInput}
                />
              </div>
-             <span className={styles.spanPassword}>{error.includes('password') && passwordError}</span>
+
+             <span style={{display: 'none'}} className={passwordError && type === 'In' ? styles.spanPasswordSignIn : styles.spanPasswordSignUp}>
+              {error.includes('password') && passwordError}
+             </span>
+             
              {type==='In' && <Link to='/forgot' className={styles.forgot}>Forgot Password</Link>}
-             <button onClick={() => void handleSubmit} className={styles.signButton}>
+
+             <button className={styles.signButton}>
                Sign {type}
              </button>
          </div>

@@ -10,17 +10,32 @@ const SignUp = () => {
   const {loadingUser, 
     error,
     passwordError,
-    emailError } = useContext(UserContext)
+    emailError, setError, setEmail, setPassword, signInWithFacebook, signInWithGoogle } = useContext(UserContext)
 
   const navigate = useNavigate()
-  
+
+  const showErrorPopUp = () => {
+    Swal.fire({
+      title: 'Oops...',
+      text: error
+    }).then(() => {
+      console.log();      
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  const handleClick = () => {
+    setError('')
+    setEmail('')
+    setPassword('')
+    navigate('/sign-up')    
+  }
+
   return (
     <>
     {loadingUser && <Loading signout={false}/>}
-    {!emailError && !passwordError && error && Swal.fire({
-      title: 'Oops...',
-      text: error
-    })}
+    {!emailError && !passwordError && error && showErrorPopUp()}
       <div className={styles.body}>
           <div className={styles.header}>
             <h1 className={styles.titulo}>Audio</h1>
@@ -29,8 +44,13 @@ const SignUp = () => {
             
          <Form type={'In'}/>
 
+         <ul className={styles.socialContainer}>
+            <li><button onClick={signInWithFacebook} className={styles.socialButton}><img src="/src/assets/images/facebook.svg" alt="" /></button></li>
+            <li><button onClick={signInWithGoogle} className={styles.socialButton}><img src="/src/assets/images/google.svg" className={styles.google} alt="" /></button></li> 
+          </ul>
+
           <div className={styles.signinContainer}>
-              <p style={{paddingTop: '1.5rem'}}>Didn't have any account? <button onClick={() => navigate('/sign-up')} className={styles.singup}>Sing Up here</button></p>
+              <p style={{paddingTop: '.7rem'}}>Didn't have any account? <button onClick={handleClick} className={styles.singup}>Sing Up here</button></p>
           </div>
     </div>
     </>

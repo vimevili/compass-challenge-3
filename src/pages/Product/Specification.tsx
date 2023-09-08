@@ -10,6 +10,7 @@ import Loading from '../../components/Loading/Loading';
 
 const Specification = () => {
   const [overChecked, setOverChecked] = useState<boolean>(false)
+  const [buttonText, setButtonText] = useState<string>('Add To Cart')
   const [featureChecked, setFeatureChecked] = useState<boolean>(true)
   const overviewBarOn = overChecked ? styles.barIconOn : styles.barIconOff
   const featureBarOn = featureChecked ? styles.barIconOn : styles.barIconOff
@@ -23,15 +24,24 @@ const Specification = () => {
   const {data, loading} = useFetch()
   const navigate = useNavigate()
 
-  const selectedProduct = data && data.find(product => product.id === id)
-  const name = selectedProduct && selectedProduct.name
+const selectedProduct = data && data.find(product => product.id == id)
+const name = selectedProduct && selectedProduct.name
   const price = selectedProduct &&  selectedProduct.price.substring(1, selectedProduct.price.length)
-  const description = selectedProduct &&  selectedProduct.description 
+  const description = selectedProduct && selectedProduct.description
+ 
 
   const cartData = useContext(CartContext);
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const {handleAddProduct}: CartContextData = cartData 
 
+  const handleClick = () => {
+    handleAddProduct(selectedProduct!)
+    setButtonText('Product Added')
+    setTimeout(() =>
+      {setButtonText('Add To Cart')
+      navigate('/cart')}
+    , 1100)
+  }
   return (
     <div className={styles.body}>
       {loading && <Loading signout={false}/>}
@@ -68,9 +78,9 @@ const Specification = () => {
         </div>
         
         <div style={{padding: '0 1.5rem 1.5rem 1.5rem'}}>
-          <Link to='/cart'>
-              <button onClick={() => handleAddProduct(selectedProduct!)} className={styles.button}>Add To Cart</button>
-          </Link>
+          
+              <button onClick={handleClick} className={buttonText === 'Add To Cart' ? styles.button : styles.buttonClicked}>{buttonText}</button>
+          
         </div> </>} 
       </div>
   )

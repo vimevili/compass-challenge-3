@@ -44,7 +44,9 @@ const Menu = () => {
                 <img src="/src/assets/images/menu.svg" alt="" />
               </button>
         </DropdownMenu.Trigger>
-              <div className={styles.photoContainer}><img src={socialUser && user ? user.photoURL! : '/src/assets/images/user-profile.svg'} alt="" className={styles.userPhoto}/></div>
+              <div className={styles.photoContainer}>
+                <img src={socialUser && user ? user.photoURL! : '/src/assets/images/user-profile.svg'} alt="" className={styles.userPhoto}/>
+              </div>
             </div>
 
         {isOpen && <DropdownMenu.Portal forceMount>

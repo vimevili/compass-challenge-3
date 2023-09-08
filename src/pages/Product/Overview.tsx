@@ -16,12 +16,22 @@ const Overview = () => {
   const [featureChecked, setFeatureChecked] = useState<boolean>(false)
   const overviewBarOn = overChecked ? styles.barIconOn : styles.barIconOff
   const featureBarOn = featureChecked ? styles.barIconOn : styles.barIconOff
+  const [buttonText, setButtonText] = useState<string>('Add To Cart')
 
   const handleRadioChange = () => {
     if (overChecked) setOverChecked(false), setFeatureChecked(true)
     if (featureChecked) setFeatureChecked(false), setOverChecked(true)
   };
-  
+
+  const handleClick = () => {
+    handleAddProduct(selectedProduct!)
+    setButtonText('Product Added')
+    setTimeout(() =>
+      {setButtonText('Add To Cart')
+      navigate('/cart')}
+    , 1100)
+  }
+
   const { id } = useParams();
   const navigate = useNavigate();
   const {data, loading} = useFetch()
@@ -33,6 +43,7 @@ const Overview = () => {
   const name = selectedProduct && selectedProduct.name
   const price = selectedProduct &&  selectedProduct.price.substring(1, selectedProduct.price.length)
   const reviews = selectedProduct &&  selectedProduct.reviews  
+
 
   return ( 
     <div className={styles.body}>
@@ -74,10 +85,8 @@ const Overview = () => {
       </ul>
       <AnotherProductCarousel />
       <div style={{padding: '0 1.5rem 1.5rem 1.5rem'}}>
-        <Link to='/cart'>
-          <button onClick={() => handleAddProduct(selectedProduct!)} className={styles.button}>Add To Cart</button>
-        </Link>
-      </div>
+          <button onClick={handleClick} className={buttonText === 'Add To Cart' ? styles.button : styles.buttonClicked}>{buttonText}</button>
+      </div> 
       </>}
     </div>
     

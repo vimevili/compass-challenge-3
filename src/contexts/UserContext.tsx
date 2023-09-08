@@ -5,18 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import verifyError from '../contexts/verifyError'
 
 interface UserContextData {
-  user: User | undefined,
+  user: User | undefined;
   email: string;
+  setEmail: (email: string) => void;
   password: string;
+  setPassword: (password: string) => void;
   loadingUser: boolean;
-  signIn: (e: FormEvent<HTMLButtonElement>) => void;
-  signUp: (e: FormEvent<HTMLButtonElement>) => void;
+  signIn: (e: FormEvent<HTMLFormElement>) => void;
+  signUp: (e: FormEvent<HTMLFormElement>) => void;
   logOut: () => void;
-  signInWithGoogle: (e: FormEvent<HTMLButtonElement>) => void;
-  signInWithFacebook: (e: FormEvent<HTMLButtonElement>) => void;
+  signInWithGoogle: (e:  FormEvent<HTMLButtonElement>) => void;
+  signInWithFacebook: (e:  FormEvent<HTMLButtonElement>) => void;
   validateEmail: (email: string) => void;
   validatePassword: (password: string) => void;
   error: string;
+  setError:(error: string) => void;
   passwordError: string;
   emailError: string; 
   isLogged: () => boolean;
@@ -46,7 +49,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
 }
 
 // SignIn functions
-  const signIn = (e: FormEvent<HTMLButtonElement>) => {
+  const signIn = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then(({user}) => {
@@ -85,7 +88,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
   }
   
 // SignUp functions 
-  const signUp = (e: FormEvent<HTMLButtonElement>) => {
+  const signUp = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password).then(({user}) => {
       setUser(user)
@@ -125,7 +128,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
   }
 
 // Google authentication
-  function signInWithGoogle(e: FormEvent<HTMLButtonElement>){
+  function signInWithGoogle(e:  FormEvent<HTMLButtonElement>){
     e.preventDefault();
     signInWithPopup(auth, googleProvider).then(({user})=>{
       setUser(user)
@@ -144,7 +147,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
     })
   }
 // Facebook authentication 
-  const signInWithFacebook=(e: FormEvent<HTMLButtonElement>)=>{
+  const signInWithFacebook=(e:  FormEvent<HTMLButtonElement>)=>{
     e.preventDefault()
     signInWithPopup(auth, facebookProvider).then(({user})=>{
       setUser(user);
@@ -168,7 +171,9 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
       value={{
         user,
         email,
+        setEmail,
         password,
+        setPassword,
         loadingUser,
         signIn,
         signUp,
@@ -178,6 +183,7 @@ export const UserProvider: React.FC<Props> = ({ children }) => {
         validateEmail,
         validatePassword,
         error,
+        setError,
         passwordError,
         emailError, 
         isLogged    
