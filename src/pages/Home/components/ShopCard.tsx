@@ -9,7 +9,7 @@ const Card = ({title, filter}: Props) => {
             <h2 className={styles.title}>{title}</h2>
             <div className={styles.buttonContainer}>
               <button className={styles.shopButton}>Shop now</button>
-              <img src="src/assets/images/icon.svg" alt="" />
+              <img src="/src/assets/images/arrow-right.svg" alt="" />
             </div>
           </div>
           <img src={filter === 'Headphone' ? "src/assets/images/headphone.png" : 'src/assets/images/headset.png'} alt="" />

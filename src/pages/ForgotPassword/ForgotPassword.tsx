@@ -28,6 +28,7 @@ const ForgotPassword = () => {
 
       <div className={styles.body}>
           <div className={styles.header}>
+            <img src="/src/assets/images/forgot.svg" alt="" />
             <h1 className={styles.titulo}>Forgot password?</h1>
             <p className={styles.subtitulo}>We can help you out!</p>
           </div>

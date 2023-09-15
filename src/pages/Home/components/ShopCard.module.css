@@ -11,22 +11,24 @@
 .textContainer {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 1.75rem;
     color: #000;
     font-size: 1rem;
     font-weight: 700;
-    line-height: 2.25rem;    
+    height: 100%;
+    max-width: 20ch;
+    overflow: hidden;
+    text-overflow: ellipsis; ;
+    white-space: nowrap;
 }
 
 .title {
-    font-size: 1.375rem;
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1.875rem; 
     letter-spacing: 0.0125rem;
-    width: 8ch;
-
 }
 
 .buttonContainer {
@@ -37,7 +39,7 @@
 
 .shopButton {
     text-decoration: none;
-    color: var(--colors-primary, #0ACF83);
+    color: #0ACF83;
     font-size: 0.875rem;
     font-weight: 700;
     background: none;

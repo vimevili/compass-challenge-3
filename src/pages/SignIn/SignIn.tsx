@@ -10,7 +10,7 @@ const SignUp = () => {
   const {loadingUser, 
     error,
     passwordError,
-    emailError, setError, setEmail, setPassword, signInWithFacebook, signInWithGoogle } = useContext(UserContext)
+    emailError, setError, setEmail, setPassword } = useContext(UserContext)
 
   const navigate = useNavigate()
 
@@ -36,21 +36,28 @@ const SignUp = () => {
     <>
     {loadingUser && <Loading signout={false}/>}
     {!emailError && !passwordError && error && showErrorPopUp()}
-      <div className={styles.body}>
-          <div className={styles.header}>
-            <h1 className={styles.titulo}>Audio</h1>
-            <p className={styles.subtitulo}>It's modular and designed to last</p>
-          </div>
-            
-         <Form type={'In'}/>
+    <div className={styles.body}>
+          <div className={styles.container}>
+            <div className={styles.form}>
 
-         <ul className={styles.socialContainer}>
-            <li><button onClick={signInWithFacebook} className={styles.socialButton}><img src="/src/assets/images/facebook.svg" alt="" /></button></li>
-            <li><button onClick={signInWithGoogle} className={styles.socialButton}><img src="/src/assets/images/google.svg" className={styles.google} alt="" /></button></li> 
-          </ul>
+              <div className={styles.marca}>
+                <div className={styles.logo}>
+                  <img src="/src/assets/images/logo-audio.svg" alt="" />
+                  <h1>Audio</h1>
+                </div>
+                <h2>It's modular and designed to last</h2>
+              </div>
 
-          <div className={styles.signinContainer}>
-              <p style={{paddingTop: '.7rem'}}>Didn't have any account? <button onClick={handleClick} className={styles.singup}>Sing Up here</button></p>
+              <div className={styles.header}>
+                <h1 className={styles.titulo}>Audio</h1>
+                <p className={styles.subtitulo}>It's modular and designed to last</p>
+              </div>
+                
+              <div>
+                <Form type={'In'} />
+                <p style={{paddingTop: '1.5rem'}}>Didn't have an account? <button className={styles.button} onClick={handleClick}>Sing Up here</button></p>
+              </div>
+            </div>
           </div>
     </div>
     </>

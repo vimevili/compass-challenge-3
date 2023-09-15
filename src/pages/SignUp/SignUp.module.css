@@ -1,9 +1,12 @@
 .body {
-    background-image: url(src/assets/images/sign-bg.png);
+    background-image: url(/src/assets/images/bg-mobile.png);
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 65% 80%;
     padding: 1.5rem;
     margin: 0;
-    min-height: 100vh;
+    min-width: 320px;
+    height: 100vh;
     color: #FFF;
     font-family: 'DM Sans', sans-serif;
     box-sizing: border-box;
@@ -30,20 +33,23 @@
 .header {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    margin: 5.5rem auto 10rem auto; 
+    gap: .5rem;
+    margin: 1rem auto 10rem auto; 
 }
 
 .socialContainer {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
     margin: 1.75rem auto 0 auto;
+    max-width: 420px;
 }
 
-.google {
-    padding: 1rem;
+.google, .github, .facebook {
+    width: 100%;
+    max-width: 420px;
+    background-color: white;
     border-radius: 0.5875rem;
-    background: #FFF;
 }
 
 .button {
@@ -56,4 +62,159 @@
 .socialButton {
     background: none;
     border: none;
+}
+
+.marca {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: flex-end;
+    font-size: 1rem;
+    display: none;
+}
+
+.logo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 2rem;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .titulo {
+        font-size: 3.5rem;
+    }
+    
+    .subtitulo {
+        font-size: 1.25rem;
+    }
+    .button {
+        font-size: 1rem; 
+        padding: .5rem;
+    }
+
+    .socialContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        max-width: 420px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .body {
+        background-image: url(/src/assets/images/signup-desk-bg.png);
+        background-repeat: no-repeat;
+        background-position: 50% 90%;
+        max-width: 100%;
+        padding: 3.125rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-end;
+        color: #1F2523; 
+        box-sizing: border-box;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1440px;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+    }
+
+    .marca {
+        display: flex;
+    }
+
+    .header {
+        display: none;
+    }
+
+    .titulo {
+        font-size: 3.5rem;
+    }
+    
+    .subtitulo {
+        font-size: 1.25rem;
+    }
+    .button {
+        font-size: 1rem; 
+        padding: .5rem;
+        
+    }
+
+    .socialContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        max-width: 522px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .body {
+        background-image: url(/src/assets/images/signup-desk-bg.png);
+        background-repeat: no-repeat;
+        background-position: 50% 90%;
+        padding: 10rem;
+    }
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1440px;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .headphoneBg {
+        display: block;
+        max-width: 80%;
+        height: auto;
+    }
+
+    .marca {
+        display: flex;
+    }
+
+    .header {
+        display: none;
+    }
+
+
+    .titulo {
+        font-size: 3.5rem;
+    }
+    
+    .subtitulo {
+        font-size: 1.25rem;
+    }
+    .button {
+        font-size: 1rem; 
+        padding: .5rem;
+    }
+
+    .socialContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        max-width: 522px;
+    }
 }

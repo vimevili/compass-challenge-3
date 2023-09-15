@@ -1,19 +1,23 @@
 .body {
     background: #FFF;
-    min-height: 100vh;
+    height: 100vh;
+    min-width: 320px;
     box-sizing: border-box;
     overflow: hidden;
     position: relative;
 }
 
-.header {
+.home {
     padding: 1.5rem;
+    padding-bottom: 0;
+}
+
+.header {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;  
-    margin-top: 2rem;
+    margin-bottom: 3.5rem;
 }
-
 
 .titulo {
     color: var(--colors-default, #000);
@@ -34,14 +38,14 @@
 }
 
 .inputs {
+    box-sizing: border-box;
     display: flex;
     border-radius: 0.625rem;
-    border: 1px solid var(--colors-grey, #BABABA);
-    background: var(--colors-white, #FFF);
+    border: 1px solid #BABABA;
+    background: #FFF;
     padding: .85rem;
     gap: 0.75rem;
-    width: 90%;
-    margin: 0 auto 1.5rem auto;
+    width: 100%;
     align-items: center;
 }
 
@@ -65,3 +69,49 @@ input:focus {
     text-decoration: none;
 }
 
+.cardContainer, .cardText {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .cardContainer {
+        display: block;
+        position: relative;
+        border-radius: 0.625rem;
+        background-image: url('/src/assets/images/card-home.png');
+        background-size: cover;
+        box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.25);
+        margin: 1.5rem;
+        height: 10rem;
+        background-position: 50% 40%;
+    }
+    .cardText {
+        display: block;
+        position: absolute;
+        color: #fff;
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.75rem; /* 100% */
+        letter-spacing: 0.03988rem;
+        z-index: 1;
+        left: 2rem;
+        top: 2rem;
+    }
+    .titulo {
+        color: var(--colors-default, #000);
+        font-size: 1.625rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 2rem;
+        max-width: none;
+    }
+    
+    .subtitulo {
+        color: var(--colors-default, #000);
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.25rem; /* 125% */
+        letter-spacing: 0.0125rem;
+    }
+}

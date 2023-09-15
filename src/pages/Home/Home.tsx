@@ -15,24 +15,28 @@ const Home = () => {
       <motion.div initial={{ x: '100%' }}
       animate={{ x: 0 }}
       exit={{ x: '-100%' }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}>
+      transition={{ duration: 0.3, ease: 'easeInOut' }} className={styles.body}>
             <div className={styles.buttonsHeader}>
               <Menu />
             </div>
-            <div className={styles.header}>
-              <p className={styles.subtitulo}>Hi, {userName}</p> 
-              <h1 className={styles.titulo}>What are you looking for today?</h1>
+            <div className={styles.home}>
+              <div className={styles.header}>
+                <p className={styles.subtitulo}>Hi, {userName}</p>
+                <h1 className={styles.titulo}>What are you looking for today?</h1>
+              </div>
+              {/* SEARCH BAR */}
+              <Link to='/search' className={styles.link}>
+                  <button className={styles.inputs}>
+                    <img src="/src/assets/images/search.svg" id='img-lock' alt="" />
+                    <input
+                      type="search"
+                      placeholder="Search headphone"
+                    />
+                  </button>
+              </Link>
             </div>
-            {/* SEARCH BAR */}
-            <Link to='/search' className={styles.link}>
-                <button className={styles.inputs}>
-                  <img src="/src/assets/images/search.svg" id='img-lock' alt="" />
-                  <input
-                    type="search"
-                    placeholder="Search headphone"
-                  />
-                </button>
-            </Link>
+            
+            <div className={styles.cardContainer}><p className={styles.cardText}>In all sizes</p></div>
           <MainProducts />
       </motion.div>
   )

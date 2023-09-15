@@ -24,8 +24,8 @@ const Specification = () => {
   const {data, loading} = useFetch()
   const navigate = useNavigate()
 
-const selectedProduct = data && data.find(product => product.id == id)
-const name = selectedProduct && selectedProduct.name
+  const selectedProduct = data && data.find(product => product.id == id)
+  const name = selectedProduct && selectedProduct.name
   const price = selectedProduct &&  selectedProduct.price.substring(1, selectedProduct.price.length)
   const description = selectedProduct && selectedProduct.description
  
@@ -42,6 +42,7 @@ const name = selectedProduct && selectedProduct.name
       navigate('/cart')}
     , 1100)
   }
+
   return (
     <div className={styles.body}>
       {loading && <Loading signout={false}/>}
@@ -78,9 +79,7 @@ const name = selectedProduct && selectedProduct.name
         </div>
         
         <div style={{padding: '0 1.5rem 1.5rem 1.5rem'}}>
-          
               <button onClick={handleClick} className={buttonText === 'Add To Cart' ? styles.button : styles.buttonClicked}>{buttonText}</button>
-          
         </div> </>} 
       </div>
   )

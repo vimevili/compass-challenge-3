@@ -12,6 +12,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    max-width: 420px;
+    margin: 0 auto;
 }
 
 .titulo {
@@ -50,36 +52,26 @@
 
 .spanPasswordSignIn {
     display: inline-block !important;
-    position: absolute;
-    top: 34.5rem; 
-    left: 2rem;
-    color:white;
+    color:red;
     font-size: .75rem;
 }
 
 .spanEmailSignIn {
     display: inline-block !important;
-    position: absolute;
-    top: 29.5rem; 
-    color:white;
+    color:red;
     font-size: .75rem;
     border: none;
 }
 
 .spanPasswordSignUp {
     display: inline-block !important;
-    position: absolute;
-    top: 33.5rem; 
-    left: 2rem;
-    color:white;
+    color:red;
     font-size: .75rem;
 }
 
 .spanEmailSignUp {
     display: inline-block !important;
-    position: absolute;
-    top: 28.6rem; 
-    color:white;
+    color:red;
     font-size: .75rem;
     border: none;
 }
@@ -120,4 +112,44 @@
     font-size: 0.875rem;
     font-weight: 700;
     line-height: 1.25rem; 
+}
+
+.signTitle {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .input::placeholder {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .signTitle {
+        display: block;
+        font-size: 2.5rem;
+        text-align: left;
+        line-height: 1.9375rem;
+        letter-spacing: 0.03988rem;
+    }
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        max-width: 522px;
+        margin: 0;
+        grid-column: 2;
+    }
+    .forgot {
+        text-decoration: none;
+        color: #1F2523; 
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: 1.25rem; 
+        text-align: start;
+    }
+    .spanPasswordSignIn, .spanEmailSignUp, .spanEmailSignIn, .spanPasswordSignUp {
+        font-size: .95rem;
+    }
+    
 }

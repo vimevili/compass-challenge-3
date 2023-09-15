@@ -2,19 +2,16 @@ import {motion} from 'framer-motion'
 import ShopCard from './ShopCard'
 import styles from './ShopCarousel.module.css'
 import {Link} from 'react-router-dom'
+import useFetch from '../../../hooks/useFetch';
+import { Product } from '../../../contexts/CartContext'
 
 type Props = {filter: string}
+
 const ShopCarousel = ({filter}: Props) => {
 
-  const headphoneSample = [
-    {name:"Bluetooth Sports Headphones", id:3},
-    {name:"Premium Over-Ear Headphones", id:5}
-  ]
-
-  const headseteSample = [
-    {name:"Wireless Gaming Headset", id:4},
-    {name:"Budget Wired Headset", id:6}
-  ]
+  const {data} = useFetch();
+  const headphones: Product[] = filter === 'Headphone' && data ? data.filter((headphone) => headphone) : [];
+  const headsets: Product[] = filter === 'Headset' && data ? data.filter((headset) => headset) : [];
 
   return (
     <motion.div className={styles.carousel} whileTap={{cursor: 'grabbing'}}>
@@ -27,7 +24,7 @@ const ShopCarousel = ({filter}: Props) => {
               transition={{duration: 0.6}}>
                 {filter === 'Headphone' && 
                 <ul className={styles.inner}>
-                  {headphoneSample.map((headphone) => 
+                  {headphones.map((headphone) => 
                       <li key={headphone.id}>
                         <Link  to={`/products/${headphone.id}/overview/`} className={styles.link}>
                           <ShopCard title={headphone.name} filter='Headphone'/>
@@ -37,7 +34,7 @@ const ShopCarousel = ({filter}: Props) => {
                 }
                 {filter === 'Headset' && 
                 <ul className={styles.inner}>
-                {headseteSample.map((headset) => 
+                {headsets.map((headset) => 
                   <li key={headset.id}>
                     <Link to={`/products/${headset.id}/overview/`} className={styles.link} >
                       <ShopCard title={headset.name} filter='Headset'/>
