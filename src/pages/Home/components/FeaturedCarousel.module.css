@@ -1,5 +1,4 @@
 .carousel {
-    max-width: 22.5rem;
     cursor: grab;
     overflow: hidden;
     padding: 0 1.5rem;
@@ -8,4 +7,10 @@
 .inner {
     display: flex;
     gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .carousel {
+        padding: 0 2rem;
+    }    
 }

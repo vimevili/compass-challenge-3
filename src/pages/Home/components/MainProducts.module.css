@@ -26,4 +26,24 @@
     text-decoration: none;
 }
 
+@media (min-width: 768px) {
+    .productsContainer {
+        gap: 1.5rem;
+    }
+    
+    .featureContainer {
+        font-size: 1.05rem;
+        padding: 0 2rem;
+    }
+}
 
+@media (min-width: 1025px) {
+    .productsContainer {
+        gap: 4rem;
+    }
+    
+    .featureContainer {
+        font-size: 1.05rem;
+        padding: 0 2rem;
+    }
+}

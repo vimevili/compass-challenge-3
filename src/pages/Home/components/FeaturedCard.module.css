@@ -1,3 +1,7 @@
+* {
+    text-decoration: none;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -14,14 +18,19 @@
 }
 .textContainer {
     color: #000;
+    font-weight: 700;
+    height: 100%;
 }
 
 .titulo {
     margin: 0; 
     font-size: 0.875rem;
     font-weight: 400;
-    width: 14ch;
     line-height: normal;
+    max-width: 13ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
 }
 
 .price {
@@ -29,4 +38,18 @@
     font-weight: 700;
     letter-spacing: 0.0125rem;
     line-height: normal;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 1.1rem;
+    }
+
+    .titulo {
+        font-size: 1.1rem;
+    }
+    
+    .price {
+        font-size: 0.95rem;
+    }
 }

@@ -41,7 +41,7 @@ const Menu = () => {
             <div className={styles.container}>
         <DropdownMenu.Trigger asChild>
               <button className={styles.IconButton} >
-                <img src="/src/assets/images/menu.svg" alt="" />
+                <img src="/src/assets/images/menu.svg" className={styles.menuIcon} alt="" />
               </button>
         </DropdownMenu.Trigger>
               <div className={styles.photoContainer}>

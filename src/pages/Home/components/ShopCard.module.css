@@ -5,7 +5,7 @@
     border-radius: 0.625rem;
     background: #FFF;
     gap: 1rem;
-    align-items: center;
+    max-width: 24rem;
 }
 
 .textContainer {
@@ -13,22 +13,24 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    color: #000;
-    font-size: 1rem;
-    font-weight: 700;
-    height: 100%;
-    max-width: 20ch;
-    overflow: hidden;
-    text-overflow: ellipsis; ;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    
 }
 
-.title {
-    font-size: 1.5rem;
+.title, .titleEllipse {
+    color: #000;
+    font-size: 1.375rem;
     font-style: normal;
     font-weight: 700;
     line-height: 1.875rem; 
     letter-spacing: 0.0125rem;
+}
+
+.titleEllipse {
+    max-width: 10ch;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .buttonContainer {

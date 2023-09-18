@@ -4,6 +4,7 @@ import styles from './ShopCarousel.module.css'
 import {Link} from 'react-router-dom'
 import useFetch from '../../../hooks/useFetch';
 import { Product } from '../../../contexts/CartContext'
+import {useEffect, useRef, useState} from 'react'
 
 type Props = {filter: string}
 
@@ -13,11 +14,21 @@ const ShopCarousel = ({filter}: Props) => {
   const headphones: Product[] = filter === 'Headphone' && data ? data.filter((headphone) => headphone) : [];
   const headsets: Product[] = filter === 'Headset' && data ? data.filter((headset) => headset) : [];
 
+  const carousel = useRef<HTMLDivElement>(null);
+  const [carouselWidth, setCarouselWidth] = useState<number>(0)
+
+  useEffect(() => {
+    const scrollWidth = carousel.current?.scrollWidth;
+    const offsetWidth = carousel.current?.offsetWidth;
+    const width = scrollWidth! - offsetWidth!;
+    setCarouselWidth(width)
+  }, [])
+
   return (
     <motion.div className={styles.carousel} whileTap={{cursor: 'grabbing'}}>
             <motion.div 
               drag='x' 
-              dragConstraints={{ right: 0, left: -300}}
+              dragConstraints={{ right: 0, left: -carouselWidth}}
               initial={{x: '100%'}}
               animate={{x: 0}}
               exit={{x: '100%'}}

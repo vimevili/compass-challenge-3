@@ -7,10 +7,11 @@ import {Link} from 'react-router-dom'
 
 const MainProducts = () => {
   const [filter, setFilter] = useState<string>('Headphone')
-
+  
   function handleFilter(value: string) {
     setFilter(value)
   }
+
   
 
   return (

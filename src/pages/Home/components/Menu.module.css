@@ -2,7 +2,6 @@
     transform-origin: var(--radix-dropdown-menu-content-transform-origin);
     animation: scaleIn 0.5s ease-out;
     font-family: 'DM Sans', sans-serif;
-    min-width: 40vw;
     min-height: 50vh;
     background-color: white;
     border-radius: 0 0 6px 0;
@@ -13,6 +12,7 @@
     flex-direction: column;
     justify-content: space-around;
     gap: 1.2rem;
+    z-index: 2;
 }
 
 .container {
@@ -21,6 +21,7 @@
   justify-content: space-between;
   padding: 1.5rem 1.5rem 0 1.5rem;
 }
+
 .DropdownMenuContent[data-side='right'] {
   animation-name: slideLeftAndFade;
 }
@@ -111,5 +112,21 @@
   to {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem 2rem 0 2rem;
+  }
+  .DropdownMenuItem {
+    font-size: 1.5rem;
+    gap: 2rem;
+  }
+  .menuIcon {
+   width: 1.5rem;
+  }
+  .userPhoto {
+   width: 2rem;
   }
 }

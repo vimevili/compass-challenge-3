@@ -65,9 +65,9 @@ const Form = ({type}: Props) => {
                   {error.includes('password') && passwordError}
                  </span>
                </div>
+             {type==='In' && <Link to='/forgot' className={styles.forgot}>Forgot Password</Link>}
              </div>
              
-             {type==='In' && <Link to='/forgot' className={styles.forgot}>Forgot Password</Link>}
 
              <button className={styles.signButton}>
                Sign {type}

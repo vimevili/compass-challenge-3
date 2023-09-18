@@ -1,0 +1,29 @@
+.body {
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem;
+}
+.container {
+    display: flex;
+    color: black;
+    gap: 1.75rem;
+}
+
+.linkContainer {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+}
+
+.logo {
+    display: flex;
+    gap: .6rem;
+}
+.logoText {
+    color: #1F2523;
+    font-size: 3.125rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.03988rem;
+}
